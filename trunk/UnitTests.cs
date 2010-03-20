@@ -61,6 +61,9 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("Do you think I should go there?"), "Do I think you should go there?");
             AssertEquals(Transformations.InvertFirstSecondPerson("Do I think you should go there?"), "Do you think I should go there?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do you wish you were god?"), "Do I wish I was god?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do I wish I was god?"), "Do you wish you were god?");
         }
 
         private static void AssertEquals(string string1, string string2)
