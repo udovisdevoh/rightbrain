@@ -50,7 +50,22 @@ namespace Linguistics
         {
             return keepCaseReplacer.ReplaceWord(original, from, to);
         }
-        
+
+        /// <summary>
+        /// Invert two word occurence in a string but keep original case
+        /// </summary>
+        /// <param name="original">original string</param>
+        /// <param name="word1">word 1</param>
+        /// <param name="word2">word 2</param>
+        /// <returns>String with occurences inverted with case kept</returns>
+        public static string InvertWordKeepCase(this string original, string word1, string word2)
+        {
+            string newString = keepCaseReplacer.ReplaceWord(original, word1, "aeiouaeiouaeiouaeiouaeiou");
+            newString = keepCaseReplacer.ReplaceWord(newString, word2, word1);
+            newString = keepCaseReplacer.ReplaceWord(newString, "aeiouaeiouaeiouaeiouaeiou", word2);
+            return newString;
+        }
+
         /// <summary>
         /// Whether a char is upperCase
         /// </summary>

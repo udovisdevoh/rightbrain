@@ -35,11 +35,17 @@ namespace RightBrain
             AssertEquals(Transformations.InvertFirstSecondPerson("This is my hat"), "This is your hat");
             AssertEquals(Transformations.InvertFirstSecondPerson("This is your hat"), "This is my hat");
 
-            AssertEquals(Transformations.InvertFirstSecondPerson("I'm the best"), "You're the best");
-            AssertEquals(Transformations.InvertFirstSecondPerson("You're the best"), "I'm the best");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I'm the best, yes, I'm the best"), "You're the best, yes, you're the best");
+            AssertEquals(Transformations.InvertFirstSecondPerson("You're the best, yes, you're the best"), "I'm the best, yes, I'm the best");
 
             AssertEquals(Transformations.InvertFirstSecondPerson("I am the best"), "You are the best");
             AssertEquals(Transformations.InvertFirstSecondPerson("You are the best"), "I am the best");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("I am the best, yes, I am the best"), "You are the best, yes, you are the best");
+            AssertEquals(Transformations.InvertFirstSecondPerson("You are the best, yes, you are the best"), "I am the best, yes, I am the best");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("I was the best"), "You were the best");
+            AssertEquals(Transformations.InvertFirstSecondPerson("You were the best"), "I was the best");
 
             AssertEquals(Transformations.InvertFirstSecondPerson("You will be rewarded"), "I will be rewarded");
             AssertEquals(Transformations.InvertFirstSecondPerson("I will be rewarded"), "You will be rewarded");
