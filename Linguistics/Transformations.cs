@@ -17,6 +17,7 @@ namespace Linguistics
         /// <returns>Text with YOU and I inverted (your and my etc...)</returns>
         public static string InvertFirstSecondPerson(string originalText)
         {
+            throw new NotImplementedException();
         }
     }
 }
