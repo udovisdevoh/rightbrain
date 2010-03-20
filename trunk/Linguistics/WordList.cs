@@ -25,6 +25,8 @@ namespace Linguistics
         public WordList(string fileName)
         {
             internalHash = new HashSet<string>();
+            #warning Implement load of text file into internal hash
+
         }
         #endregion
 

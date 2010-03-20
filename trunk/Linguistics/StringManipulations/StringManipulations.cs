@@ -20,7 +20,7 @@ namespace Linguistics
         /// <summary>
         /// List of possible word delimiters
         /// </summary>
-        private static readonly char[] wordDelimiterList = { ' ', '\n', '\r', '.', ',', ')', '(','"','{','}','[',']',':',';','?','%','!' };
+        private static readonly char[] wordDelimiterList = { ' ', '\n', '\r', '.', ',', ')', '(','"','{','}','[',']',':',';','?','%','!','\\','/' };
 
         /// <summary>
         /// HashSet of possible word delimiters
