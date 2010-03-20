@@ -10,6 +10,13 @@ namespace Linguistics
     /// </summary>
     internal class FirstSecondPersonManager
     {
+        #region Parts
+        /// <summary>
+        /// Manages the difference between I and ME words
+        /// </summary>
+        private FirstPersonManager firstPersonManager = new FirstPersonManager();
+        #endregion
+
         #region Internal Methods
         /// <summary>
         /// Invert "YOU" and "I" from string (your and my etc...)
@@ -20,6 +27,7 @@ namespace Linguistics
         {
             originalText = originalText.InvertWordKeepCase("my", "your");
             originalText = originalText.InvertWordKeepCase("i'm", "you're");
+            originalText = originalText.InvertWordKeepCase("i'll", "you'll");
             originalText = originalText.InvertWordKeepCase("am", "are");
             originalText = originalText.InvertWordKeepCase("was", "were");
             originalText = originalText.InvertWordKeepCase("mine", "yours");
@@ -33,6 +41,11 @@ namespace Linguistics
             string currentDelimiter;
             string newWord;
             string previousWord = null;
+            string previousDelimiter = null;
+
+            if (wordStream.FirstDelimiter != string.Empty)
+                previousDelimiter = wordStream.FirstDelimiter;
+
             bool isSentenceBegin;
 
             while (wordStream.TryGetNextWord(out originalWord, out currentDelimiter, out isSentenceBegin))
@@ -44,35 +57,13 @@ namespace Linguistics
 
                 newWord = newWord.InvertWordKeepCase("you", "me");
 
-                if (newWord.ToLower() == "me" && isSentenceBegin)
-                    newWord = "I";
+                if (newWord.ToLower() == "me" || newWord.ToLower() == "i")
+                    newWord = firstPersonManager.GetFirstPersonWord(previousDelimiter, previousWord, wordStream.PeekNextWord(), isSentenceBegin);
 
-                if (newWord == "i")
-                    newWord = "I";
+                /*if (youMeI.ToLower() == "me" && isSentenceBegin)
+                    youMeI = "I";*/
 
-                if (newWord == "i'm")
-                    newWord = "I'm";
-
-                if (newWord == "YOu" && !isSentenceBegin)
-                    newWord = "you";
-
-                if (newWord == "YOu're")
-                    newWord = "You're";
-
-                if (newWord == "You" && !isSentenceBegin)
-                    newWord = "you";
-
-                if (newWord == "You're" && !isSentenceBegin)
-                    newWord = "you're";
-
-                if (newWord == "You're" && !isSentenceBegin)
-                    newWord = "you";
-
-                if (newWord == "you" && isSentenceBegin)
-                    newWord = "You";
-
-                if (newWord == "YOu")
-                    newWord = "You";
+                newWord = FixCase(newWord, isSentenceBegin);
 
                 newString += newWord;
 
@@ -80,9 +71,56 @@ namespace Linguistics
                     newString += currentDelimiter;
 
                 previousWord = newWord;
+                previousDelimiter = currentDelimiter;
             }
 
             return newString;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Fix the case for words: You, me and I
+        /// </summary>
+        /// <param name="youMeI">You, me or I</param>
+        /// <param name="isSentenceBegin">whether the word is at the beginin of a sentence</param>
+        /// <returns>word with fixed case</returns>
+        private string FixCase(string youMeI, bool isSentenceBegin)
+        {
+            if (youMeI == "i")
+                youMeI = "I";
+
+            if (youMeI == "i'm")
+                youMeI = "I'm";
+
+            if (youMeI == "YOu" && !isSentenceBegin)
+                youMeI = "you";
+
+            if (youMeI == "YOu're")
+                youMeI = "You're";
+
+            if (youMeI == "YOu'll")
+                youMeI = "You'll";
+
+            if (youMeI == "You" && !isSentenceBegin)
+                youMeI = "you";
+
+            if (youMeI == "You're" && !isSentenceBegin)
+                youMeI = "you're";
+
+            if (youMeI == "You're" && !isSentenceBegin)
+                youMeI = "you";
+
+            if (youMeI == "you" && isSentenceBegin)
+                youMeI = "You";
+
+            if (youMeI == "YOu")
+                youMeI = "You";
+
+            if (youMeI == "I'lL")
+                youMeI = "I'll";
+
+            return youMeI;
         }
         #endregion
     }
