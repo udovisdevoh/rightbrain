@@ -30,6 +30,11 @@ namespace Linguistics
         /// List of other delimiters
         /// </summary>
         private List<string> delimiterList;
+
+        /// <summary>
+        /// List of word indexes that correspound to begining of sentences
+        /// </summary>
+        private HashSet<int> listSentenceBegin;
         #endregion
 
         #region Constructor
@@ -41,6 +46,9 @@ namespace Linguistics
         {
             wordList = new List<string>();
             delimiterList = new List<string>();
+            listSentenceBegin = new HashSet<int>();
+
+            listSentenceBegin.Add(0);//We add the index of the first word as sentence begining
 
             string currentWord = string.Empty;
             string currentDelimiter = string.Empty;
@@ -55,6 +63,10 @@ namespace Linguistics
                     if (currentWord != string.Empty)
                     {
                         wordList.Add(currentWord);
+
+                        if (currentDelimiter.Contains('.') || currentDelimiter.Contains('!') || currentDelimiter.Contains('?'))
+                            listSentenceBegin.Add(wordList.Count - 1);
+
                         currentWord = string.Empty;
                     }
                 }
@@ -92,6 +104,20 @@ namespace Linguistics
         /// <returns>whether there are still words to get</returns>
         public bool TryGetNextWord(out string nextWord, out string nextDelimiter)
         {
+            bool isSentenceBegin;
+            return TryGetNextWord(out nextWord, out nextDelimiter, out isSentenceBegin);
+        }
+
+        /// <summary>
+        /// Try get next word and delimiter from word stream
+        /// </summary>
+        /// <param name="nextWord">next word</param>
+        /// <param name="nextDelimiter">next word delimiter (can be null if it's the last word)</param>
+        /// <param name="isSentenceBegin">whether current word is the begining of a sentence</param>
+        /// <returns>whether there are still words to get</returns>
+        public bool TryGetNextWord(out string nextWord, out string nextDelimiter, out bool isSentenceBegin)
+        {
+            isSentenceBegin = false;
             nextWord = null;
             nextDelimiter = null;
             if (pointer >= wordList.Count)
@@ -101,6 +127,8 @@ namespace Linguistics
 
             if (pointer < delimiterList.Count)
                 nextDelimiter = delimiterList[pointer];
+
+            isSentenceBegin = listSentenceBegin.Contains(pointer);
 
             pointer++;
             return true;
