@@ -55,6 +55,15 @@ namespace Linguistics
             if (previousWord == "do")
                 return "i";
 
+            if (previousWord == "to")
+                return "me";
+
+            if (previousWord == "at")
+                return "me";
+
+            if (previousWord == "on")
+                return "me";
+
             if (Analysis.IsVerb(nextWord))
                 return "i";
 
