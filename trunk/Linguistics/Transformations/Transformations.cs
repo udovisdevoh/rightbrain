@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Used for linguistic transformations
     /// </summary>
-    static class Transformations
+    public static class Transformations
     {
         #region Parts
         /// <summary>

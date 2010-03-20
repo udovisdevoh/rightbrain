@@ -9,7 +9,7 @@ namespace Linguistics
     /// <summary>
     /// Used for generic string manipulations
     /// </summary>
-    static class StringManipulations
+    public static class StringManipulations
     {
         #region Parts
         /// <summary>

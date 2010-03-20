@@ -17,9 +17,10 @@ namespace Linguistics
         /// <param name="previousDelimiter">previous delimiter (can be null)</param>
         /// <param name="previousWord">previous word (can be null)</param>
         /// <param name="nextWord">next word (can be null)</param>
+        /// <param name="nextDelimiter">next delimiter (can be null)</param>
         /// <param name="isSentenceBegin">whether the word is at the begining of a sentence</param>
         /// <returns></returns>
-        internal string GetFirstPersonWord(string previousDelimiter, string previousWord, string nextWord, bool isSentenceBegin)
+        internal string GetFirstPersonWord(string previousDelimiter, string previousWord, string nextWord, string nextDelimiter, bool isSentenceBegin)
         {
             if (isSentenceBegin)
                 return "i";
@@ -33,11 +34,17 @@ namespace Linguistics
             if (previousDelimiter == null)
                 return "i";
 
+            if (nextDelimiter == null)
+                return "me";
+
             previousWord = previousWord.ToLower();
             nextWord = nextWord.ToLower();
 
             if (previousDelimiter.Contains(','))
                 return "i";
+
+            if (nextDelimiter.Contains(','))
+                return "me";
 
             if (previousWord == "do" && nextWord == "a")
                 return "me";
@@ -50,6 +57,9 @@ namespace Linguistics
 
             if (Analysis.IsVerb(nextWord))
                 return "i";
+
+            if (Analysis.IsVerb(previousWord))
+                return "me";
 
             return "me";
         }
