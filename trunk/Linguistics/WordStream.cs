@@ -135,6 +135,19 @@ namespace Linguistics
         }
 
         /// <summary>
+        /// Try to get next word without advancing pointer
+        /// Null if no word left
+        /// </summary>
+        /// <returns>next word or null if none available</returns>
+        public string PeekNextWord()
+        {
+            if (pointer >= wordList.Count)
+                return null;
+
+            return wordList[pointer];
+        }
+
+        /// <summary>
         /// Reset the word pointer
         /// </summary>
         public void Reset()
