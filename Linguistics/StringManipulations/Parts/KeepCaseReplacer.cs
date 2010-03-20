@@ -21,8 +21,69 @@ namespace Linguistics
         internal string ReplaceWord(string original, string from, string to)
         {
             string newString = original.ReplaceWordInsensitiveLower(from, to);
-            newString = newString.ApplyWordCaseStructure(original);
+            newString = ApplyWordCaseStructureToText(newString, original);
             return newString;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Take a string and apply word case structure from another
+        /// </summary>
+        /// <param name="targetText">string to modify</param>
+        /// <param name="sourceText">string to take case from</param>
+        /// <returns>new string with modified case</returns>
+        private string ApplyWordCaseStructureToText(string targetText, string sourceText)
+        {
+            WordStream targetWordStream = new WordStream(targetText);
+            WordStream sourceWordStream = new WordStream(sourceText);
+
+            string newString = targetWordStream.FirstDelimiter;
+
+            string targetWord, targetDelimiter, sourceWord, sourceDelimiter;
+            while (targetWordStream.TryGetNextWord(out targetWord, out targetDelimiter))
+            {
+                if (sourceWordStream.TryGetNextWord(out sourceWord, out sourceDelimiter))
+                {
+                    newString += ApplyWordCaseStructureToWord(targetWord, sourceWord);
+
+                    if (targetDelimiter != null)
+                        newString += targetDelimiter;
+                }
+            }
+
+            return newString;
+        }
+
+        /// <summary>
+        /// Take a word and apply case structure of another word
+        /// </summary>
+        /// <param name="targetWord">word to modify</param>
+        /// <param name="sourceWord">word to take case structure</param>
+        /// <returns>modified word with the other word's case structure</returns>
+        private string ApplyWordCaseStructureToWord(string targetWord, string sourceWord)
+        {
+            char[] targetCharList = targetWord.ToCharArray();
+            char[] sourceCharList = sourceWord.ToCharArray();
+
+            string newWord = string.Empty;
+
+            int charCounter = 0;
+            bool isUpperCase = false;
+            foreach (char targetLetter in targetCharList)
+            {
+                if (sourceCharList.Length > charCounter)
+                    isUpperCase = sourceCharList[charCounter].IsUpperCase();
+
+                if (isUpperCase)
+                    newWord += targetLetter.ToUpper();
+                else
+                    newWord += targetLetter.ToLower();
+
+                charCounter++;
+            }
+
+            return newWord;
         }
         #endregion
     }

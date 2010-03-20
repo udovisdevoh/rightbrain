@@ -21,7 +21,7 @@ namespace RightBrain
         {
             AssertEquals("I like musIc".ReplaceWordInsensitiveLower("music", "FooD"), "i like food");
             AssertEquals("Better is better".ReplaceWordKeepCase("better", "worse"), "Worse is worse");
-            AssertEquals("You think YOU are the one, do you?".ReplaceWordKeepCase("you", "i"), "Vous think VOUS are the one, do vous?");
+            AssertEquals("You think YOU are the one, do you?".ReplaceWordKeepCase("you", "vous"), "Vous think VOUS are the one, do vous?");
         }
 
         private static void TestLinguisticsTransformations()
@@ -52,12 +52,15 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("You will do it by yourself"), "I will do it by myself");
             AssertEquals(Transformations.InvertFirstSecondPerson("I will do it by myself"), "You will do it by yourself");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do you think I should go there?"), "Do I think you should go there?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do I think you should go there?"), "Do you think I should go there?");
         }
 
         private static void AssertEquals(string string1, string string2)
         {
             if (string1 != string2)
-                throw new Exception("Wrong value: "+string2 +" should equals: "+string1);
+                throw new Exception("Wrong value: "+string1 +" should be: "+string2);
         }
         #endregion
     }

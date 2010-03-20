@@ -20,7 +20,22 @@ namespace Linguistics
         /// <summary>
         /// List of possible word delimiters
         /// </summary>
-        private static char[] wordDelimiterList = { ' ', '\n', '\r', '.', ',', ')', '(','"','{','}','[',']',':',';','?','%','!' };
+        private static readonly char[] wordDelimiterList = { ' ', '\n', '\r', '.', ',', ')', '(','"','{','}','[',']',':',';','?','%','!' };
+
+        /// <summary>
+        /// HashSet of possible word delimiters
+        /// </summary>
+        private static readonly HashSet<char> wordDelimiterHash;
+        #endregion
+
+        #region Constructors
+        /// <summary>
+        /// Initialization of default data
+        /// </summary>
+        static StringManipulations()
+        {
+            wordDelimiterHash = new HashSet<char>(wordDelimiterList);
+        }
         #endregion
 
         #region Public Methods
@@ -35,20 +50,39 @@ namespace Linguistics
         {
             return keepCaseReplacer.ReplaceWord(original, from, to);
         }
+        
+        /// <summary>
+        /// Whether a char is upperCase
+        /// </summary>
+        /// <param name="letter">char</param>
+        /// <returns>Whether a char is upperCase</returns>
+        public static bool IsUpperCase(this char letter)
+        {
+            return letter.ToString().ToUpper() == letter.ToString();
+        }
+
+        /// <summary>
+        /// Convert a char to upperCase
+        /// </summary>
+        /// <param name="letter">char</param>
+        /// <returns>UpperCase version of char</returns>
+        public static char ToUpper(this char letter)
+        {
+            return letter.ToString().ToUpper()[0];
+        }
+
+        /// <summary>
+        /// Convert a char to lowerCase
+        /// </summary>
+        /// <param name="letter">char</param>
+        /// <returns>lowerCase version</returns>
+        public static char ToLower(this char letter)
+        {
+            return letter.ToString().ToLower()[0];
+        }
         #endregion
 
         #region Internal Methods
-        /// <summary>
-        /// Take a string and apply another string's case structure
-        /// </summary>
-        /// <param name="target">string to modify</param>
-        /// <param name="source">string to take case structure from</param>
-        /// <returns>String with modified case structure</returns>
-        internal static string ApplyWordCaseStructure(this string target, string source)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Convert string to all lowercase and replace word from to
         /// </summary>
@@ -71,6 +105,16 @@ namespace Linguistics
             newString = newString.Substring(1, newString.Length - 2);
 
             return newString;
+        }
+
+        /// <summary>
+        /// Whether character is a word delimiter
+        /// </summary>
+        /// <param name="letter">character</param>
+        /// <returns>Whether character is a word delimiter</returns>
+        internal static bool IsWordDelimiter(char letter)
+        {
+            return wordDelimiterHash.Contains(letter);
         }
         #endregion
     }
