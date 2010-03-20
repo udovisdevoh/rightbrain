@@ -17,10 +17,12 @@ namespace Linguistics
         /// <param name="original">original string</param>
         /// <param name="from">string to replace</param>
         /// <param name="to">replace to</param>
-        /// <returns></returns>
-        internal string Replace(string original, string from, string to)
+        /// <returns>String with replaced words with case structure kept</returns>
+        internal string ReplaceWord(string original, string from, string to)
         {
-            throw new NotImplementedException();
+            string newString = original.ReplaceWordInsensitiveLower(from, to);
+            newString = newString.ApplyWordCaseStructure(original);
+            return newString;
         }
         #endregion
     }
