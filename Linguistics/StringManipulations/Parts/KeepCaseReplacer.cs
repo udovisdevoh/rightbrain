@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Replace words in string while keeping original case structure
     /// </summary>
-    class KeepCaseReplacer
+    internal class KeepCaseReplacer
     {
         #region Internal Methods
         /// <summary>
