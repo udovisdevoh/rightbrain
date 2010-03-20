@@ -58,7 +58,7 @@ namespace Linguistics
                 newWord = newWord.InvertWordKeepCase("you", "me");
 
                 if (newWord.ToLower() == "me" || newWord.ToLower() == "i")
-                    newWord = firstPersonManager.GetFirstPersonWord(previousDelimiter, previousWord, wordStream.PeekNextWord(), isSentenceBegin);
+                    newWord = firstPersonManager.GetFirstPersonWord(previousDelimiter, previousWord, wordStream.PeekNextWord(), wordStream.PeekNextDelimiter(), isSentenceBegin);
 
                 /*if (youMeI.ToLower() == "me" && isSentenceBegin)
                     youMeI = "I";*/

@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Represents a stream of words that can be extracted form a string
     /// </summary>
-    class WordStream
+    internal class WordStream
     {
         #region Fields and parts
         /// <summary>
@@ -145,6 +145,19 @@ namespace Linguistics
                 return null;
 
             return wordList[pointer];
+        }
+
+        /// <summary>
+        /// Try to get next delimiter without advancing pointer
+        /// Null if no delimiter left
+        /// </summary>
+        /// <returns>next delimiter or null if none available</returns>
+        public string PeekNextDelimiter()
+        {
+            if (pointer >= delimiterList.Count)
+                return null;
+
+            return delimiterList[pointer];
         }
 
         /// <summary>
