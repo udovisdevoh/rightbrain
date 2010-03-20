@@ -19,7 +19,9 @@ namespace RightBrain
         #region Private Methods
         private static void TestStringManipulations()
         {
-            AssertEquals("Better is better".ReplaceKeepCase("better", "worse"), "Worse is worse");
+            AssertEquals("I like musIc".ReplaceWordInsensitiveLower("music", "FooD"), "i like food");
+            AssertEquals("Better is better".ReplaceWordKeepCase("better", "worse"), "Worse is worse");
+            AssertEquals("You think YOU are the one, do you?".ReplaceWordKeepCase("you", "i"), "Vous think VOUS are the one, do vous?");
         }
 
         private static void TestLinguisticsTransformations()

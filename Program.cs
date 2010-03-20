@@ -9,6 +9,7 @@ namespace RightBrain
     {
         static void Main(string[] args)
         {
+            UnitTests.TestAll();
         }
     }
 }
