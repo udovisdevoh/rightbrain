@@ -48,7 +48,7 @@
     <Compile Include="Linguistics\StringManipulations\Parts\KeepCaseReplacer.cs" />
     <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
     <Compile Include="Linguistics\Transformations\Transformations.cs" />
-    <Compile Include="Linguistics\StringManipulations\WordStream.cs" />
+    <Compile Include="Linguistics\WordStream.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Linguistics\StringManipulations\StringManipulations.cs" />
