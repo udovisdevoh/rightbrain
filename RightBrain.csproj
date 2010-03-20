@@ -60,6 +60,22 @@
     <Compile Include="Linguistics\StringManipulations\StringManipulations.cs" />
     <Compile Include="UnitTests.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Linguistics\WordLists\irregularVerbList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linguistics\WordLists\modalVerbList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Linguistics\WordLists\regularVerbList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Linguistics\WordLists\undefinedVerbList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -14,22 +14,35 @@ namespace Linguistics
         /// <summary>
         /// List of modal verb
         /// </summary>
-        private WordList modalVerbList = new WordList("modalVerbList.txt");
+        private WordListFromFile modalVerbList;
 
         /// <summary>
         /// List of irregular verb
         /// </summary>
-        private WordList irregularVerbList = new WordList("irregularVerbList.txt");
+        private WordListFromFile irregularVerbList;
 
         /// <summary>
         /// List of regular verb
         /// </summary>
-        private WordList regularVerbList = new WordList("regularVerbList.txt");
+        private WordListFromFile regularVerbList;
 
         /// <summary>
         /// List of undefined verb
         /// </summary>
-        private WordList undefinedVerbList = new WordList("undefinedVerbList.txt");
+        private WordListFromFile undefinedVerbList;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create verb manager
+        /// </summary>
+        public VerbManager()
+        {
+            modalVerbList = new WordListFromFile("Linguistics/WordLists/modalVerbList.txt");
+            irregularVerbList = new WordListFromFile("Linguistics/WordLists/irregularVerbList.txt");
+            regularVerbList = new WordListFromFile("Linguistics/WordLists/regularVerbList.txt");
+            undefinedVerbList = new WordListFromFile("Linguistics/WordLists/undefinedVerbList.txt");
+        }
         #endregion
 
         #region Internal Methods
