@@ -52,6 +52,7 @@ namespace Linguistics
 
             string currentWord = string.Empty;
             string currentDelimiter = string.Empty;
+            string previousDelimiter = null;
             firstDelimiter = string.Empty;
             foreach (char letter in sourceText)
             {
@@ -64,7 +65,7 @@ namespace Linguistics
                     {
                         wordList.Add(currentWord);
 
-                        if (currentDelimiter.Contains('.') || currentDelimiter.Contains('!') || currentDelimiter.Contains('?'))
+                        if (previousDelimiter != null && (previousDelimiter.Contains('.') || previousDelimiter.Contains('!') || previousDelimiter.Contains('?')))
                             listSentenceBegin.Add(wordList.Count - 1);
 
                         currentWord = string.Empty;
@@ -75,6 +76,7 @@ namespace Linguistics
                     if (currentDelimiter != string.Empty)
                     {
                         delimiterList.Add(currentDelimiter);
+                        previousDelimiter = currentDelimiter;
                         currentDelimiter = string.Empty;
                     }
                     currentWord += letter;
@@ -104,7 +106,7 @@ namespace Linguistics
         /// <returns>whether there are still words to get</returns>
         public bool TryGetNextWord(out string nextWord, out string nextDelimiter)
         {
-            bool isSentenceBegin;
+            bool isSentenceBegin = false;
             return TryGetNextWord(out nextWord, out nextDelimiter, out isSentenceBegin);
         }
 

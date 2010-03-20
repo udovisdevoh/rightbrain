@@ -67,6 +67,12 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("You and me, baby ain't nothing but mammals"), "I and you, baby ain't nothing but mammals");
             AssertEquals(Transformations.InvertFirstSecondPerson("I and you, baby ain't nothing but mammals"), "You and me, baby ain't nothing but mammals");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("it's about you."), "it's about me.");
+            AssertEquals(Transformations.InvertFirstSecondPerson("it's about me."), "it's about you.");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("You'd be surprised to see how much I care about you."), "I'd be surprised to see how much you care about me.");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I'd be surprised to see how much you care about me."), "You'd be surprised to see how much I care about you.");
         }
 
         private static void AssertEquals(string string1, string string2)

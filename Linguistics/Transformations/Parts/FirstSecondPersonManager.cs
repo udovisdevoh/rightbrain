@@ -27,6 +27,7 @@ namespace Linguistics
         {
             originalText = originalText.InvertWordKeepCase("my", "your");
             originalText = originalText.InvertWordKeepCase("i'm", "you're");
+            originalText = originalText.InvertWordKeepCase("you'd", "i'd");
             originalText = originalText.InvertWordKeepCase("i'll", "you'll");
             originalText = originalText.InvertWordKeepCase("mine", "yours");
             originalText = originalText.InvertWordKeepCase("myself", "yourself");
@@ -120,6 +121,9 @@ namespace Linguistics
 
             if (youMeI == "YOu")
                 youMeI = "You";
+
+            if (youMeI == "YOu'd")
+                youMeI = "You'd";
 
             if (youMeI == "I'lL")
                 youMeI = "I'll";
