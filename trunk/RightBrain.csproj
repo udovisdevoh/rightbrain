@@ -45,10 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Linguistics\StringManipulations\Parts\KeepCaseReplacer.cs" />
     <Compile Include="Linguistics\Transformations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Linguistics\StringManipulations.cs" />
+    <Compile Include="Linguistics\StringManipulations\StringManipulations.cs" />
     <Compile Include="UnitTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
