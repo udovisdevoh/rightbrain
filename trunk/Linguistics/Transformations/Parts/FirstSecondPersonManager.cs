@@ -28,8 +28,6 @@ namespace Linguistics
             originalText = originalText.InvertWordKeepCase("my", "your");
             originalText = originalText.InvertWordKeepCase("i'm", "you're");
             originalText = originalText.InvertWordKeepCase("i'll", "you'll");
-            originalText = originalText.InvertWordKeepCase("am", "are");
-            originalText = originalText.InvertWordKeepCase("was", "were");
             originalText = originalText.InvertWordKeepCase("mine", "yours");
             originalText = originalText.InvertWordKeepCase("myself", "yourself");
 
@@ -57,11 +55,17 @@ namespace Linguistics
 
                 newWord = newWord.InvertWordKeepCase("you", "me");
 
+                //Verb inversion
+                if (previousWord != null && (previousWord.ToLower() == "i" || previousWord.ToLower() == "you"))
+                {
+                    newWord = newWord.InvertWordKeepCase("am", "are");
+                    newWord = newWord.InvertWordKeepCase("was", "were");
+                    newWord = newWord.InvertWordKeepCase("aren't", "amn't");
+                }
+
+
                 if (newWord.ToLower() == "me" || newWord.ToLower() == "i")
                     newWord = firstPersonManager.GetFirstPersonWord(previousDelimiter, previousWord, wordStream.PeekNextWord(), wordStream.PeekNextDelimiter(), isSentenceBegin);
-
-                /*if (youMeI.ToLower() == "me" && isSentenceBegin)
-                    youMeI = "I";*/
 
                 newWord = FixCase(newWord, isSentenceBegin);
 
