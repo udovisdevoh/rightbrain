@@ -105,6 +105,12 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("Why do you poke me like that?"), "Why do I poke you like that?");
             AssertEquals(Transformations.InvertFirstSecondPerson("Why do I poke you like that?"), "Why do you poke me like that?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("You turn me on!"), "I turn you on!");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I turn you on!"), "You turn me on!");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("You tjkghkgsdurn me on!"), "I tjkghkgsdurn you on!");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I tjkghkgsdurn you on!"), "You tjkghkgsdurn me on!");
         }
 
         private static void AssertEquals(string string1, string string2)
