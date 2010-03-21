@@ -19,7 +19,7 @@ namespace Linguistics
         /// <summary>
         /// List of words
         /// </summary>
-        private List<string> wordList;
+        private List<string> wordListAsString;
 
         /// <summary>
         /// First delimiter before first word
@@ -44,7 +44,7 @@ namespace Linguistics
         /// <param name="sourceText">source text</param>
         public WordStringStream(string sourceText)
         {
-            wordList = new List<string>();
+            wordListAsString = new List<string>();
             delimiterList = new List<string>();
             listSentenceBegin = new HashSet<int>();
 
@@ -59,14 +59,14 @@ namespace Linguistics
                 if (StringManipulations.IsWordDelimiter(letter))
                 {
                     currentDelimiter += letter;
-                    if (wordList.Count == 0 && currentWord == string.Empty)
+                    if (wordListAsString.Count == 0 && currentWord == string.Empty)
                         firstDelimiter += letter;
                     if (currentWord != string.Empty)
                     {
-                        wordList.Add(currentWord);
+                        wordListAsString.Add(currentWord);
 
                         if (previousDelimiter != null && (previousDelimiter.Contains('.') || previousDelimiter.Contains('!') || previousDelimiter.Contains('?')))
-                            listSentenceBegin.Add(wordList.Count - 1);
+                            listSentenceBegin.Add(wordListAsString.Count - 1);
 
                         currentWord = string.Empty;
                     }
@@ -85,7 +85,7 @@ namespace Linguistics
             
             if (currentWord != string.Empty)
             {
-                wordList.Add(currentWord);
+                wordListAsString.Add(currentWord);
                 currentWord = string.Empty;
             }
 
@@ -122,10 +122,10 @@ namespace Linguistics
             isSentenceBegin = false;
             nextWord = null;
             nextDelimiter = null;
-            if (pointer >= wordList.Count)
+            if (pointer >= wordListAsString.Count)
                 return false;
 
-            nextWord = wordList[pointer];
+            nextWord = wordListAsString[pointer];
 
             if (pointer < delimiterList.Count)
                 nextDelimiter = delimiterList[pointer];
@@ -143,10 +143,10 @@ namespace Linguistics
         /// <returns>next word or null if none available</returns>
         public string PeekNextWord()
         {
-            if (pointer >= wordList.Count)
+            if (pointer >= wordListAsString.Count)
                 return null;
 
-            return wordList[pointer];
+            return wordListAsString[pointer];
         }
 
         /// <summary>
@@ -168,6 +168,18 @@ namespace Linguistics
         public void Reset()
         {
             pointer = 0;
+        }
+        #endregion
+
+        #region Public Methods
+        /// <summary>
+        /// Whether word stream contains specified word
+        /// </summary>
+        /// <param name="word">specified word</param>
+        /// <returns>Whether word stream contains specified word</returns>
+        public bool ContainsWord(string word)
+        {
+            return wordListAsString.Contains(word);
         }
         #endregion
 

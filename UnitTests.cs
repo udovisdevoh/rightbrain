@@ -19,6 +19,24 @@ namespace RightBrain
         #region Private Methods
         private static void TestStringManipulations()
         {
+            TestInsensitiveReplaceToLower();
+            TestRemoveWord();
+        }
+
+        private static void TestRemoveWord()
+        {
+            AssertEquals("I do not watch you.".RemoveWord("not"), "I do watch you.");
+            AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue"), "I see mountains and dogs");
+            AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue", 1), "I see mountains and blue dogs");
+            AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue", 2), "I see mountains and dogs");
+            AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue", 0), "I see mountains and dogs");
+            AssertEquals("I see blue, everywhere".RemoveWord("blue", 0), "I see, everywhere");
+            AssertEquals("I see, blue everywhere".RemoveWord("blue", 0), "I see, everywhere");
+            AssertEquals("I see, blue, everywhere".RemoveWord("blue", 0), "I see, everywhere");
+        }
+
+        private static void TestInsensitiveReplaceToLower()
+        {
             AssertEquals("I like musIc".ReplaceWordInsensitiveLower("music", "FooD"), "i like food");
             AssertEquals("Better is better".ReplaceWordKeepCase("better", "worse"), "Worse is worse");
             AssertEquals("You think YOU are the one, do you?".ReplaceWordKeepCase("you", "vous"), "Vous think VOUS are the one, do vous?");
