@@ -26,7 +26,28 @@ namespace RightBrain
 
         private static void TestLinguisticsTransformations()
         {
-            TestInvertFirstSecondPerson();   
+            TestInvertFirstSecondPerson();
+            TestInvertNegation();
+        }
+
+        private static void TestInvertNegation()
+        {
+            AssertEquals(Transformations.InvertNegation("I am not watching you"), "I am watching you");
+            AssertEquals(Transformations.InvertNegation("I am watching you"), "I am not watching you");
+
+            AssertEquals(Transformations.InvertNegation("I watch you"), "I don't watch you");
+            AssertEquals(Transformations.InvertNegation("I don't watch you"), "I watch you");
+
+            AssertEquals(Transformations.InvertNegation("I do not watch you"), "I watch you");
+            AssertEquals(Transformations.InvertNegation("I do watch you"), "I do not watch you");
+
+            AssertEquals(Transformations.InvertNegation("I wont watch you"), "I will watch you");
+            AssertEquals(Transformations.InvertNegation("I will watch you"), "I wont watch you");
+
+            AssertEquals(Transformations.InvertNegation("I will not watch you"), "I will watch you");
+
+            AssertEquals(Transformations.InvertNegation("I love you"), "I hate you");
+            AssertEquals(Transformations.InvertNegation("I hate you"), "I love you");
         }
 
         private static void TestInvertFirstSecondPerson()
