@@ -12,6 +12,11 @@ namespace Linguistics
     {
         #region Parts
         /// <summary>
+        /// Manages I and YOU
+        /// </summary>
+        private static SubjectObjectDetector subjectObjectDetector = new SubjectObjectDetector();
+
+        /// <summary>
         /// Manages analysis of verbs
         /// </summary>
         private static VerbManager verbManager = new VerbManager();
@@ -71,6 +76,16 @@ namespace Linguistics
         public static bool IsPostposition(string word)
         {
             return postpositionList.ContainsExact(word);
+        }
+
+        /// <summary>
+        /// Whether word is a subject rather than an object (from the context)
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>Whether word is a subject rather than an object (from the context)</returns>
+        public static bool IsSubjectNotObject(Word word)
+        {
+            return subjectObjectDetector.IsSubjectNotObject(word);
         }
         #endregion
     }

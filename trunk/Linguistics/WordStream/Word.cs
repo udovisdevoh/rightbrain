@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Represents a word as a wrapper to a string but with more functionalities
     /// </summary>
-    internal class Word
+    public class Word
     {
         #region Fields
         /// <summary>
