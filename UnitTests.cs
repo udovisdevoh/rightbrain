@@ -111,6 +111,27 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("You tjkghkgsdurn me on!"), "I tjkghkgsdurn you on!");
             AssertEquals(Transformations.InvertFirstSecondPerson("I tjkghkgsdurn you on!"), "You tjkghkgsdurn me on!");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Where did you go?"), "Where did I go?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Where did I go?"), "Where did you go?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("somewhere I belong"), "somewhere you belong");
+            AssertEquals(Transformations.InvertFirstSecondPerson("somewhere you belong"), "somewhere I belong");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("where I belong"), "where you belong");
+            AssertEquals(Transformations.InvertFirstSecondPerson("where you belong"), "where I belong");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("when I come around"), "when you come around");
+            AssertEquals(Transformations.InvertFirstSecondPerson("when you come around"), "when I come around");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("where I fdhsdaytr"), "where you fdhsdaytr");
+            AssertEquals(Transformations.InvertFirstSecondPerson("where you fdhsdaytr"), "where I fdhsdaytr");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("when I fdhsdaytr around"), "when you fdhsdaytr around");
+            AssertEquals(Transformations.InvertFirstSecondPerson("when you fdhsdaytr around"), "when I fdhsdaytr around");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("somewhere I fdhsdaytr"), "somewhere you fdhsdaytr");
+            AssertEquals(Transformations.InvertFirstSecondPerson("somewhere you fdhsdaytr"), "somewhere I fdhsdaytr");
         }
 
         private static void AssertEquals(string string1, string string2)
