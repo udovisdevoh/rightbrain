@@ -26,6 +26,11 @@ namespace RightBrain
 
         private static void TestLinguisticsTransformations()
         {
+            TestInvertFirstSecondPerson();   
+        }
+
+        private static void TestInvertFirstSecondPerson()
+        {
             AssertEquals(Transformations.InvertFirstSecondPerson("I love you"), "You love me");
             AssertEquals(Transformations.InvertFirstSecondPerson("You love me"), "I love you");
 
@@ -82,6 +87,21 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("What would you do if you were God? Would you bless me?"), "What would I do if I was God? Would I bless you?");
             AssertEquals(Transformations.InvertFirstSecondPerson("What would I do if I was God? Would I bless you?"), "What would you do if you were God? Would you bless me?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do you laugh at me like that?"), "Why do I laugh at you like that?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do I laugh at you like that?"), "Why do you laugh at me like that?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do you think I will be saved?"), "Do I think you will be saved?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do I think you will be saved?"), "Do you think I will be saved?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do you think I am stupid?"), "Do I think you are stupid?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Do I think you are stupid?"), "Do you think I am stupid?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do you poke? I like that?"), "Why do I poke? You like that?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do I poke? You like that?"), "Why do you poke? I like that?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do you poke me like that?"), "Why do I poke you like that?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Why do I poke you like that?"), "Why do you poke me like that?");
         }
 
         private static void AssertEquals(string string1, string string2)
