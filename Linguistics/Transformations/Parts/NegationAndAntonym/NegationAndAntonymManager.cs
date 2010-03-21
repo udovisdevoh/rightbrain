@@ -15,6 +15,11 @@ namespace Linguistics
         /// Manages words like "don't" and "didn't" and "doesn't"
         /// </summary>
         private NtManager ntManager = new NtManager();
+
+        /// <summary>
+        /// Manages operations on the word "not"
+        /// </summary>
+        private NotManager notManager = new NotManager();
         #endregion
 
         #region Internal Methods
@@ -31,12 +36,30 @@ namespace Linguistics
                 return ntManager.RemoveNt(originalProposition, 1);
             else if (ntManager.ContainsNtAbleWord(originalProposition))
                 return ntManager.AddNt(originalProposition, 1);
+            else if (ContainsWordEndingWithIng(originalProposition))
+                return notManager.AddNotBeforeFirstWordEndingWithIng(originalProposition);
+            else if (Analysis.ContainsVerb(originalProposition,true))
+                return ntManager.AddDontOrDoesntBeforeFirstVerb(originalProposition);
             else if (Analysis.ContainsAntonym(originalProposition))
-                return antonymManager.InvertAntonym(originalProposition, 1);
-            else if (Analysis.ContainsPresentParticiple(originalProposition))
-                return notManager.AddNotBeforeFirstPresentParticiple(originalProposition);
-            else if (Analysis.ContainsVerb(originalProposition))
-                return dontDoesntManager.AddNotBeforeFirstVerb(originalProposition);
+                return antonymManager.InvertAntonym(originalProposition, 1);//must be put at first
+
+            return originalProposition.Insert("It's not like ",0);
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Whether text contains a word ending with ing or in'
+        /// </summary>
+        /// <param name="text">text to analyze</param>
+        /// <returns>Whether text contains a word ending with ing or in'</returns>
+        private bool ContainsWordEndingWithIng(string text)
+        {
+            WordStringStream wordStringStream = new WordStringStream(text);
+            foreach (string word in wordStringStream)
+                if (word.ToLower().EndsWith("ing") || word.ToLower().EndsWith("in'"))
+                    return true;
+            return false;
         }
         #endregion
     }

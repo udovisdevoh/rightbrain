@@ -54,6 +54,7 @@
     <Compile Include="Linguistics\StringManipulations\Parts\WordRemover.cs" />
     <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\NegationAndAntonym\NegationAndAntonymManager.cs" />
+    <Compile Include="Linguistics\Transformations\Parts\NegationAndAntonym\NotManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\NegationAndAntonym\NtManager.cs" />
     <Compile Include="Linguistics\Transformations\Transformations.cs" />
     <Compile Include="Linguistics\WordList.cs" />

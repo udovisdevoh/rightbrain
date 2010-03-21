@@ -48,8 +48,9 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether the word is a verb</returns>
-        public static bool IsVerb(string word)
+        public static bool IsVerb(this string word)
         {
+            word = word.ToLower();
             return verbManager.IsVerb(word);
         }
 
@@ -58,8 +59,9 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether the word is a pronoun</returns>
-        public static bool IsPronoun(string word)
+        public static bool IsPronoun(this string word)
         {
+            word = word.ToLower();
             return pronounList.ContainsExact(word);
         }
 
@@ -68,8 +70,9 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether word is a preposition</returns>
-        public static bool IsPreposition(string word)
+        public static bool IsPreposition(this string word)
         {
+            word = word.ToLower();
             return prepositionList.ContainsExact(word);
         }
 
@@ -78,8 +81,9 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether word is a preposition</returns>
-        public static bool IsPostposition(string word)
+        public static bool IsPostposition(this string word)
         {
+            word = word.ToLower();
             return postpositionList.ContainsExact(word);
         }
 
@@ -88,7 +92,7 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether word is a subject rather than an object (from the context)</returns>
-        public static bool IsSubjectNotObject(Word word)
+        public static bool IsSubjectNotObject(this Word word)
         {
             return subjectObjectDetector.IsSubjectNotObject(word);
         }
@@ -98,9 +102,25 @@ namespace Linguistics
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether word is a word like: "how, when, where, why" etc</returns>
-        public static bool IsQuestionBeginWord(string word)
+        public static bool IsQuestionBeginWord(this string word)
         {
+            word = word.ToLower();
             return questionBeginList.ContainsExact(word);
+        }
+
+        /// <summary>
+        /// Whether text contains verb
+        /// </summary>
+        /// <param name="text">text to analyze</param>
+        /// <returns>Whether text contains verb</returns>
+        public static bool ContainsVerb(this string text)
+        {
+            text = text.ToLower();
+            WordStringStream wordStringStream = new WordStringStream(text);
+            foreach (string word in wordStringStream)
+                if (Analysis.IsVerb(word))
+                    return true;
+            return false;
         }
         #endregion
     }

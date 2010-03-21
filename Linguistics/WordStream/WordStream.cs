@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Represents a stream of words that can be extracted and manipulated form a string
     /// </summary>
-    public class WordStream : WordStringStream
+    public class WordStream : WordStringStream, IEnumerable<Word>
     {
         #region Fields and parts
         /// <summary>
@@ -71,6 +71,18 @@ namespace Linguistics
 
             pointer++;
             return true;
+        }
+        #endregion
+
+        #region IEnumerable<Word> Members
+        public new IEnumerator<Word> GetEnumerator()
+        {
+            return wordList.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return wordList.GetEnumerator();
         }
         #endregion
     }
