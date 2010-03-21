@@ -33,6 +33,7 @@ namespace RightBrain
             AssertEquals("I see blue, everywhere".RemoveWord("blue", 0), "I see, everywhere");
             AssertEquals("I see, blue everywhere".RemoveWord("blue", 0), "I see, everywhere");
             AssertEquals("I see, blue, everywhere".RemoveWord("blue", 0), "I see, everywhere");
+            AssertEquals("I see, BLUE, everywhere".RemoveWord("blue", 0), "I see, everywhere");
         }
 
         private static void TestInsensitiveReplaceToLower()
@@ -50,22 +51,28 @@ namespace RightBrain
 
         private static void TestInvertNegation()
         {
-            AssertEquals(Transformations.InvertNegation("I am not watching you"), "I am watching you");
+            AssertEquals(Transformations.InvertNegation("I am nOt watching you"), "I am watching you");
             AssertEquals(Transformations.InvertNegation("I am watching you"), "I am not watching you");
 
             AssertEquals(Transformations.InvertNegation("I watch you"), "I don't watch you");
-            AssertEquals(Transformations.InvertNegation("I don't watch you"), "I watch you");
+            AssertEquals(Transformations.InvertNegation("I DoN't watch you"), "I watch you");
 
-            AssertEquals(Transformations.InvertNegation("I do not watch you"), "I watch you");
+            AssertEquals(Transformations.InvertNegation("I do Not watch you"), "I watch you");
             AssertEquals(Transformations.InvertNegation("I do watch you"), "I do not watch you");
 
-            AssertEquals(Transformations.InvertNegation("I wont watch you"), "I will watch you");
-            AssertEquals(Transformations.InvertNegation("I will watch you"), "I wont watch you");
+            AssertEquals(Transformations.InvertNegation("I woN't watch you"), "I will watch you");
+            AssertEquals(Transformations.InvertNegation("I Will watch you"), "I wont watch you");
 
-            AssertEquals(Transformations.InvertNegation("I will not watch you"), "I will watch you");
+            AssertEquals(Transformations.InvertNegation("I will nOT watch you"), "I will watch you");
 
-            AssertEquals(Transformations.InvertNegation("I love you"), "I hate you");
+            AssertEquals(Transformations.InvertNegation("I LOVE you"), "I HATE you");
             AssertEquals(Transformations.InvertNegation("I hate you"), "I love you");
+
+            AssertEquals(Transformations.InvertNegation("You AIN'T a dancer"), "You ARE a dancer");
+            AssertEquals(Transformations.InvertNegation("You AIN'T no dancer"), "You ARE a dancer");
+
+            AssertEquals(Transformations.InvertNegation("You ain't a dancer"), "You are a dancer");
+            AssertEquals(Transformations.InvertNegation("You ain't no dancer"), "You are a dancer");
         }
 
         private static void TestInvertFirstSecondPerson()

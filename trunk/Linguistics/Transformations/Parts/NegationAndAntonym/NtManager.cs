@@ -10,6 +10,32 @@ namespace Linguistics
     /// </summary>
     internal class NtManager
     {
+        #region Fields
+        /// <summary>
+        /// List of words for which we can add "n't"
+        /// </summary>
+        private HashSet<string> ntAbleWordList;
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Create an n't manager
+        /// </summary>
+        public NtManager()
+        {
+            ntAbleWordList = new HashSet<string>();
+            ntAbleWordList.Add("did");
+            ntAbleWordList.Add("should");
+            ntAbleWordList.Add("could");
+            ntAbleWordList.Add("would");
+            ntAbleWordList.Add("will");//Must be altered to "won't"
+            ntAbleWordList.Add("can");
+            ntAbleWordList.Add("do");
+            ntAbleWordList.Add("must");
+            ntAbleWordList.Add("does");
+        }
+        #endregion
+
         #region Internal Methods
         /// <summary>
         /// Remove words like "don't" and "didn't" and "doesn't"
@@ -22,14 +48,74 @@ namespace Linguistics
         }
 
         /// <summary>
-        /// Remove words like "don't" and "didn't" and "doesn't"
+        /// Remove n't from words like "don't" and "didn't" and "doesn't"
         /// </summary>
         /// <param name="originalText">original text</param>
         /// <param name="desiredRemoveCount">how many times we remove it (default: 0 as infinite)</param>
         /// <returns>original text with removed occurence of don't, didn't or doesn't</returns>
         internal string RemoveNt(string originalText, int desiredRemoveCount)
         {
-            throw new NotImplementedException();
+            int index = originalText.ToLower().IndexOf("n't");
+
+            bool wasContainWordWo = originalText.ToLower().ContainsWord("wo");
+
+            string newString = originalText.Remove(index, 3);
+
+            if (!wasContainWordWo && newString.ToLower().ContainsWord("wo"))
+                newString.ReplaceWordKeepCase("wo","will");
+
+            return newString;
+        }
+
+        /// <summary>
+        /// Whether string contains words for which "n't" can be added
+        /// </summary>
+        /// <param name="text">string to analyze</param>
+        /// <returns>Whether string contains words for which "n't" can be added</returns>
+        internal bool ContainsNtAbleWord(string text)
+        {
+            WordStringStream wordStringStream = new WordStringStream(text);
+
+            string currentWord, currentDelimiter;
+            while (wordStringStream.TryGetNextWord(out currentWord, out currentDelimiter))
+                if (ntAbleWordList.Contains(currentWord.ToLower()))
+                    return true;
+
+            return false;
+        }
+
+        /// <summary>
+        /// Add "n't" to word from original text
+        /// </summary>
+        /// <param name="text">original text</param>
+        /// <param name="desiredChangeCount">how many times to do it (0: infinite)</param>
+        /// <returns></returns>
+        internal string AddNt(string text, int desiredChangeCount)
+        {
+            WordStringStream wordStringStream = new WordStringStream(text);
+
+            string currentWord, currentDelimiter;
+
+            string newString = wordStringStream.FirstDelimiter;
+            int changeCount = 0;
+            while (wordStringStream.TryGetNextWord(out currentWord, out currentDelimiter))
+            {
+                if ((desiredChangeCount == 0 || changeCount<desiredChangeCount) && ntAbleWordList.Contains(currentWord))
+                {
+                    currentWord += "n't";
+
+                    if (currentWord.ToLower() == "willn't")
+                        currentWord = "won't";
+
+                    changeCount++;
+                }
+
+                newString += currentWord;
+                if (currentDelimiter != null)
+                    newString += currentDelimiter;
+            }
+
+            return newString;
         }
         #endregion
     }

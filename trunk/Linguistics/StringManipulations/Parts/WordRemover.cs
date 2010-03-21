@@ -36,7 +36,7 @@ namespace Linguistics
                 latestWord = currentWord;
                 if (desiredOccurenceCount == 0 || counter < desiredOccurenceCount)
                 {
-                    if (currentWord.ToString() == wordToRemove)
+                    if (currentWord.ToString().ToLower() == wordToRemove.ToLower())
                     {
                         if (!isFirstWord)
                         {
