@@ -18,6 +18,11 @@ namespace Linguistics
         private static KeepCaseReplacer keepCaseReplacer = new KeepCaseReplacer();
 
         /// <summary>
+        /// Used to remove words from strings
+        /// </summary>
+        private static WordRemover wordRemover = new WordRemover();
+
+        /// <summary>
         /// List of possible word delimiters
         /// </summary>
         private static readonly char[] wordDelimiterList = { ' ', '\n','\t', '\r', '.', ',', ')', '(','"','{','}','[',']',':',';','?','%','!','\\','/' };
@@ -94,6 +99,41 @@ namespace Linguistics
         public static char ToLower(this char letter)
         {
             return letter.ToString().ToLower()[0];
+        }
+
+        /// <summary>
+        /// Whether string contains specified word
+        /// </summary>
+        /// <param name="text">text to analyze</param>
+        /// <param name="word">word to find in text</param>
+        /// <returns>Whether string contains specified word</returns>
+        public static bool ContainsWord(this string text, string word)
+        {
+            WordStringStream wordStringStream = new WordStringStream(text);
+            return wordStringStream.ContainsWord(word);
+        }
+
+        /// <summary>
+        /// Remove word from string
+        /// </summary>
+        /// <param name="original">original string</param>
+        /// <param name="wordToRemove">word to remove</param>
+        /// <returns>String with specified word removed</returns>
+        public static string RemoveWord(this string original, string wordToRemove)
+        {
+            return RemoveWord(original, wordToRemove, 0);
+        }
+
+        /// <summary>
+        /// Remove word from string
+        /// </summary>
+        /// <param name="original">original string</param>
+        /// <param name="wordToRemove">word to remove</param>
+        /// <param name="occurenceCount">how many times we remove it (default: infinite: 0)</param>
+        /// <returns>String with specified word removed</returns>
+        public static string RemoveWord(this string original, string wordToRemove, int occurenceCount)
+        {
+            return wordRemover.RemoveWord(original, wordToRemove, occurenceCount);
         }
         #endregion
 

@@ -18,7 +18,8 @@ namespace Linguistics
         /// <returns>Proposition with inverted negation or with antonyms</returns>
         internal string InvertNegation(string originalProposition)
         {
-            if (originalProposition.ContainsWord("not"))
+            throw new NotImplementedException();
+            /*if (originalProposition.ContainsWord("not"))
                 return originalProposition.RemoveWord("not", 1);
             else if (originalProposition.Contains("n't"))
                 return ntManager.RemoveNt(originalProposition);
@@ -27,7 +28,7 @@ namespace Linguistics
             else if (Analysis.ContainsPresentParticiple(originalProposition))
                 return notManager.AddNotBeforeFirstPresentParticiple(originalProposition);
             else if (Analysis.ContainsVerb(originalProposition))
-                return dontDoesntManager.AddDontOrDoesntBeforeFirstVerb(originalProposition);//be careful if there is a "do" before verb
+                return dontDoesntManager.AddDontOrDoesntBeforeFirstVerb(originalProposition);//be careful if there is a "do" before verb*/
         }
         #endregion
     }
