@@ -95,7 +95,7 @@ namespace Linguistics
         /// <returns>Whether the word is in undefined verb list</returns>
         private bool IsUndefinedVerb(string word)
         {
-            return undefinedVerbList.ContainsAsNegativeOrPositiveForm(word);
+             return undefinedVerbList.ContainsAsNegativeOrPositiveForm(word);
         }
         #endregion
     }
