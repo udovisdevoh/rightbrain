@@ -83,7 +83,7 @@ namespace Linguistics
             if (Analysis.IsPostposition(nextWord))
                 return isObject;
 
-            if (Analysis.IsQuestionBeginWord(previousWord))
+            if (Analysis.IsQuestionBeginWord(previousWord) || previousWord.StartsWith("some") && Analysis.IsQuestionBeginWord(previousWord.Substring(4)))
                 return isSubject;
 
             if (isNextWordVerb)
