@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Represents a stream of words (as strings) that can be extracted form a string
     /// </summary>
-    internal class WordStringStream
+    public class WordStringStream
     {
         #region Fields and parts
         /// <summary>

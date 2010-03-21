@@ -10,13 +10,6 @@ namespace Linguistics
     /// </summary>
     internal class FirstSecondPersonManager
     {
-        #region Parts
-        /// <summary>
-        /// Manages the difference between I and ME words
-        /// </summary>
-        private FirstPersonManager firstPersonManager = new FirstPersonManager();
-        #endregion
-
         #region Internal Methods
         /// <summary>
         /// Invert "YOU" and "I" from string (your and my etc...)
@@ -66,7 +59,7 @@ namespace Linguistics
 
 
                 if (newWord.ToLower() == "me" || newWord.ToLower() == "i")
-                    newWord = firstPersonManager.GetFirstPersonWord(originalWord);
+                    newWord = Analysis.IsSubjectNotObject(originalWord) ? "i" : "me";
 
                 newWord = FixCase(newWord, originalWord.IsSentenceBegin);
 

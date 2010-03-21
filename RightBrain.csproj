@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Linguistics\Analysis\Analysis.cs" />
+    <Compile Include="Linguistics\Analysis\Parts\SubjectObjectDetector.cs" />
     <Compile Include="Linguistics\Analysis\Parts\VerbManager.cs" />
     <Compile Include="Linguistics\StringManipulations\Parts\KeepCaseReplacer.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\FirstPersonManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
     <Compile Include="Linguistics\Transformations\Transformations.cs" />
     <Compile Include="Linguistics\WordList.cs" />
