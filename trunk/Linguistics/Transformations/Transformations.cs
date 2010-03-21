@@ -15,6 +15,11 @@ namespace Linguistics
         /// Manages words such as you, me, I, yours mine, my, mines etc...
         /// </summary>
         private static FirstSecondPersonManager firstSecondPersonManager = new FirstSecondPersonManager();
+
+        /// <summary>
+        /// Performs negation of proposions
+        /// </summary>
+        private static NegationAndAntonymManager negationAndAntonymManager = new NegationAndAntonymManager();
         #endregion
 
         #region Public Methods
@@ -26,6 +31,16 @@ namespace Linguistics
         public static string InvertFirstSecondPerson(string originalText)
         {
             return firstSecondPersonManager.InvertFirstSecondPerson(originalText);
+        }
+
+        /// <summary>
+        /// Invert negation of proposition by removing or adding words like "not" or by replacing a word to an antonym
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <returns>Proposition with inverted negation or with antonyms</returns>
+        public static string InvertNegation(string originalProposition)
+        {
+            return negationAndAntonymManager.InvertNegation(originalProposition);
         }
         #endregion
     }
