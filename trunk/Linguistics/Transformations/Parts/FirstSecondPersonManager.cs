@@ -36,7 +36,7 @@ namespace Linguistics
             WordStream wordStream = new WordStream(originalText);
 
             string newString = wordStream.FirstDelimiter;
-            string originalWord;
+            Word originalWord;
             string currentDelimiter;
             string newWord;
             string previousWord = null;
@@ -47,9 +47,9 @@ namespace Linguistics
 
             bool isSentenceBegin;
 
-            while (wordStream.TryGetNextWord(out originalWord, out currentDelimiter, out isSentenceBegin))
+            while (wordStream.TryGetNextWord(out originalWord))
             {
-                newWord = originalWord.ReplaceWordKeepCase("i", "me");
+                newWord = originalWord.ToString().ReplaceWordKeepCase("i", "me");
 
                 if (newWord == "ME")
                     newWord = "me";
@@ -57,7 +57,7 @@ namespace Linguistics
                 newWord = newWord.InvertWordKeepCase("you", "me");
 
                 //Verb inversion
-                if (previousWord != null && (previousWord.ToLower() == "i" || previousWord.ToLower() == "you"))
+                if (previousWord != null && (previousWord.ToLower() == "i" || previousWord.ToLower() == "you" || previousWord.ToLower() == "me"))
                 {
                     newWord = newWord.InvertWordKeepCase("am", "are");
                     newWord = newWord.InvertWordKeepCase("was", "were");
@@ -66,17 +66,19 @@ namespace Linguistics
 
 
                 if (newWord.ToLower() == "me" || newWord.ToLower() == "i")
-                    newWord = firstPersonManager.GetFirstPersonWord(previousDelimiter, previousWord, wordStream.PeekNextWord(), wordStream.PeekNextDelimiter(), isSentenceBegin);
+                    newWord = firstPersonManager.GetFirstPersonWord(originalWord);
 
-                newWord = FixCase(newWord, isSentenceBegin);
+                newWord = FixCase(newWord, originalWord.IsSentenceBegin);
 
                 newString += newWord;
 
-                if (currentDelimiter != null)
-                    newString += currentDelimiter;
+                if (originalWord.RightDelimiter != null)
+                    newString += originalWord.RightDelimiter;
+
+                originalWord.StringValue = newWord;
 
                 previousWord = newWord;
-                previousDelimiter = currentDelimiter;
+                previousDelimiter = originalWord.RightDelimiter;
             }
 
             return newString;

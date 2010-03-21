@@ -35,8 +35,8 @@ namespace Linguistics
         /// <returns>new string with modified case</returns>
         private string ApplyWordCaseStructureToText(string targetText, string sourceText)
         {
-            WordStream targetWordStream = new WordStream(targetText);
-            WordStream sourceWordStream = new WordStream(sourceText);
+            WordStringStream targetWordStream = new WordStringStream(targetText);
+            WordStringStream sourceWordStream = new WordStringStream(sourceText);
 
             string newString = targetWordStream.FirstDelimiter;
 

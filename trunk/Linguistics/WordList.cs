@@ -39,7 +39,7 @@ namespace Linguistics
             
             foreach (string word in chunkList)
             {
-                string trimmedWord = word.Trim();
+                string trimmedWord = word.Trim().ToLower();
                 if (trimmedWord.Length > 0)
                 {
                     internalHash.Add(word.ToLower());

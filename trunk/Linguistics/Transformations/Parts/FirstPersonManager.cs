@@ -12,38 +12,34 @@ namespace Linguistics
     {
         #region Internal Methods
         /// <summary>
-        /// Returns word "you" or "i" depending on the context.
+        /// Whether word should be "me" or "i" according to the context
         /// </summary>
-        /// <param name="previousDelimiter">previous delimiter (can be null)</param>
-        /// <param name="previousWord">previous word (can be null)</param>
-        /// <param name="nextWord">next word (can be null)</param>
-        /// <param name="nextDelimiter">next delimiter (can be null)</param>
-        /// <param name="isSentenceBegin">whether the word is at the begining of a sentence</param>
-        /// <returns></returns>
-        internal string GetFirstPersonWord(string previousDelimiter, string previousWord, string nextWord, string nextDelimiter, bool isSentenceBegin)
+        /// <param name="word">word</param>
+        /// <returns>Whether word should be "me" or "i" according to the context</returns>
+        internal string GetFirstPersonWord(Word word)
         {
-            if (isSentenceBegin)
+            if (word.IsSentenceBegin)
                 return "i";
 
-            if (previousWord == null)
+            if (word.PreviousWord == null)
                 return "i";
 
-            if (nextWord == null)
+            if (word.NextWord == null)
                 return "me";
 
-            if (previousDelimiter == null)
+            if (word.LeftDelimiter == null)
                 return "i";
 
-            if (nextDelimiter == null)
+            if (word.RightDelimiter == null)
                 return "me";
 
-            previousWord = previousWord.ToLower();
-            nextWord = nextWord.ToLower();
+            string previousWord = word.PreviousWord.ToString().ToLower();
+            string nextWord = word.NextWord.ToString().ToLower();
 
-            if (previousDelimiter.Contains(','))
+            if (word.LeftDelimiter.Contains(','))
                 return "i";
 
-            if (nextDelimiter.Contains(','))
+            if (word.RightDelimiter.Contains(','))
                 return "me";
 
             if (previousWord == "do" && nextWord == "a")
@@ -64,10 +60,21 @@ namespace Linguistics
             if (previousWord == "on")
                 return "me";
 
-            if (Analysis.IsVerb(nextWord))
+
+            bool isNextWordVerb = Analysis.IsVerb(nextWord);
+            bool isPreviousWordVerb = Analysis.IsVerb(previousWord);
+
+            
+            if (isPreviousWordVerb && Analysis.IsPreposition(nextWord))
+                return "me";
+
+            if (Analysis.IsPostposition(nextWord))
+                return "me";
+
+            if (isNextWordVerb)
                 return "i";
 
-            if (Analysis.IsVerb(previousWord))
+            if (isPreviousWordVerb)
                 return "me";
 
             return "me";
