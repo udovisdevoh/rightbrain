@@ -29,12 +29,14 @@ namespace Linguistics
                 return originalProposition.RemoveWord("not", 1);
             else if (originalProposition.Contains("n't"))
                 return ntManager.RemoveNt(originalProposition, 1);
+            else if (ntManager.ContainsNtAbleWord(originalProposition))
+                return ntManager.AddNt(originalProposition, 1);
             else if (Analysis.ContainsAntonym(originalProposition))
                 return antonymManager.InvertAntonym(originalProposition, 1);
             else if (Analysis.ContainsPresentParticiple(originalProposition))
                 return notManager.AddNotBeforeFirstPresentParticiple(originalProposition);
             else if (Analysis.ContainsVerb(originalProposition))
-                return dontDoesntManager.AddDontOrDoesntBeforeFirstVerb(originalProposition);//be careful if there is a "do" before verb
+                return dontDoesntManager.AddNotBeforeFirstVerb(originalProposition);
         }
         #endregion
     }
