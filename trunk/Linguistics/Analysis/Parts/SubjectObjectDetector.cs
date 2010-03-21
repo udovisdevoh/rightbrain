@@ -10,6 +10,19 @@ namespace Linguistics
     /// </summary>
     internal class SubjectObjectDetector
     {
+        #region Constants
+        /// <summary>
+        /// When it is a subject
+        /// </summary>
+        private const bool isSubject = true;
+
+        /// <summary>
+        /// When it is an object
+        /// </summary>
+        private const bool isObject = false;
+        #endregion
+
+        #region Public Methods
         /// <summary>
         /// Whether word is a subject and not an object according to provided context
         /// </summary>
@@ -18,46 +31,46 @@ namespace Linguistics
         internal bool IsSubjectNotObject(Word word)
         {
             if (word.IsSentenceBegin)
-                return true;
+                return isSubject;
 
             if (word.PreviousWord == null)
-                return true;
+                return isSubject;
 
             if (word.NextWord == null)
-                return false;
+                return isObject;
 
             if (word.LeftDelimiter == null)
-                return true;
+                return isSubject;
 
             if (word.RightDelimiter == null)
-                return false;
+                return isObject;
 
             string previousWord = word.PreviousWord.ToString().ToLower();
             string nextWord = word.NextWord.ToString().ToLower();
 
             if (word.LeftDelimiter.Contains(','))
-                return true;
+                return isSubject;
 
             if (word.RightDelimiter.Contains(','))
-                return false;
+                return isObject;
 
             if (previousWord == "do" && nextWord == "a")
-                return false;
+                return isObject;
 
             if (previousWord == "do" && nextWord == "an")
-                return false;
+                return isObject;
 
             if (previousWord == "do")
-                return true;
+                return isSubject;
 
             if (previousWord == "to")
-                return false;
+                return isObject;
 
             if (previousWord == "at")
-                return false;
+                return isObject;
 
             if (previousWord == "on")
-                return false;
+                return isObject;
 
 
             bool isNextWordVerb = Analysis.IsVerb(nextWord);
@@ -65,18 +78,22 @@ namespace Linguistics
 
 
             if (isPreviousWordVerb && Analysis.IsPreposition(nextWord))
-                return false;
+                return isObject;
 
             if (Analysis.IsPostposition(nextWord))
-                return false;
+                return isObject;
+
+            if (Analysis.IsQuestionBeginWord(previousWord))
+                return isSubject;
 
             if (isNextWordVerb)
-                return true;
+                return isSubject;
 
             if (isPreviousWordVerb)
-                return false;
+                return isObject;
 
-            return false;
+            return isObject;
         }
+        #endregion
     }
 }

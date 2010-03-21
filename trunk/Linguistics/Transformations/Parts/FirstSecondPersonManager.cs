@@ -30,15 +30,12 @@ namespace Linguistics
 
             string newString = wordStream.FirstDelimiter;
             Word originalWord;
-            string currentDelimiter;
             string newWord;
             string previousWord = null;
             string previousDelimiter = null;
 
             if (wordStream.FirstDelimiter != string.Empty)
                 previousDelimiter = wordStream.FirstDelimiter;
-
-            bool isSentenceBegin;
 
             while (wordStream.TryGetNextWord(out originalWord))
             {

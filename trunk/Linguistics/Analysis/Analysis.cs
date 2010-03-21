@@ -35,6 +35,11 @@ namespace Linguistics
         /// List of postpositions
         /// </summary>
         private static WordListFromFile postpositionList = new WordListFromFile("Linguistics/WordLists/postpositionList.txt");
+
+        /// <summary>
+        /// List of words like "when, why, how, where"
+        /// </summary>
+        private static WordListFromFile questionBeginList = new WordListFromFile("Linguistics/WordLists/questionBeginWordList.txt");
         #endregion
 
         #region Public Methods
@@ -86,6 +91,16 @@ namespace Linguistics
         public static bool IsSubjectNotObject(Word word)
         {
             return subjectObjectDetector.IsSubjectNotObject(word);
+        }
+
+        /// <summary>
+        /// Whether word is a word like: "how, when, where, why" etc
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>Whether word is a word like: "how, when, where, why" etc</returns>
+        public static bool IsQuestionBeginWord(string word)
+        {
+            return questionBeginList.ContainsExact(word);
         }
         #endregion
     }
