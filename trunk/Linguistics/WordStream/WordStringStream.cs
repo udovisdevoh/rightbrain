@@ -8,7 +8,7 @@ namespace Linguistics
     /// <summary>
     /// Represents a stream of words (as strings) that can be extracted form a string
     /// </summary>
-    public class WordStringStream
+    public class WordStringStream : IEnumerable<string>
     {
         #region Fields and parts
         /// <summary>
@@ -190,6 +190,18 @@ namespace Linguistics
         public string FirstDelimiter
         {
             get { return firstDelimiter; }
+        }
+        #endregion
+
+        #region IEnumerable<string> Members
+        public IEnumerator<string> GetEnumerator()
+        {
+            return wordListAsString.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return wordListAsString.GetEnumerator();
         }
         #endregion
     }

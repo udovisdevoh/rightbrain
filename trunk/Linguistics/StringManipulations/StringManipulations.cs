@@ -109,6 +109,7 @@ namespace Linguistics
         /// <returns>Whether string contains specified word</returns>
         public static bool ContainsWord(this string text, string word)
         {
+            word = word.ToLower();
             WordStringStream wordStringStream = new WordStringStream(text);
             return wordStringStream.ContainsWord(word);
         }

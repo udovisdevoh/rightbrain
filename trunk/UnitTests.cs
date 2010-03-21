@@ -68,11 +68,17 @@ namespace RightBrain
             AssertEquals(Transformations.InvertNegation("I LOVE you"), "I HATE you");
             AssertEquals(Transformations.InvertNegation("I hate you"), "I love you");
 
+            AssertEquals(Transformations.InvertNegation("This is hot"), "This is cold");
+            AssertEquals(Transformations.InvertNegation("This is cold"), "This is hot");
+
             AssertEquals(Transformations.InvertNegation("You AIN'T a dancer"), "You ARE a dancer");
             AssertEquals(Transformations.InvertNegation("You AIN'T no dancer"), "You ARE a dancer");
 
             AssertEquals(Transformations.InvertNegation("You ain't a dancer"), "You are a dancer");
             AssertEquals(Transformations.InvertNegation("You ain't no dancer"), "You are a dancer");
+
+            AssertEquals(Transformations.InvertNegation("You are fofdghdsting your homework"), "You are not fofdghdsting your homework");
+            AssertEquals(Transformations.InvertNegation("You are not fofdghdsting your homework"), "You are fofdghdsting your homework");
         }
 
         private static void TestInvertFirstSecondPerson()
