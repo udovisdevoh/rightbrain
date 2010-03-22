@@ -40,6 +40,11 @@ namespace Linguistics
         /// List of words like "when, why, how, where"
         /// </summary>
         private static WordListFromFile questionBeginList = new WordListFromFile("Linguistics/WordLists/questionBeginWordList.txt");
+
+        /// <summary>
+        /// List of subordinating conjunctions that can be put before subject. For instance: while, if
+        /// </summary>
+        private static WordListFromFile subordinatingConjunctionBeforeSubjectList = new WordListFromFile("Linguistics/WordLists/subordinatingConjunctionBeforeSubjectList.txt");
         #endregion
 
         #region Public Methods
@@ -106,6 +111,17 @@ namespace Linguistics
         {
             word = word.ToLower();
             return questionBeginList.ContainsExact(word);
+        }
+
+        /// <summary>
+        /// Whether word is a subordinating conjunction that can be put before a verb
+        /// </summary>
+        /// <param name="word">word to analyze</param>
+        /// <returns>Whether word is a subordinating conjunction that can be put before a verb</returns>
+        public static bool IsSubordinatingConjunctionBeforeSubject(this string word)
+        {
+            word = word.ToLower();
+            return subordinatingConjunctionBeforeSubjectList.ContainsExact(word);
         }
 
         /// <summary>

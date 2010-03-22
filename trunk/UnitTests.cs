@@ -21,6 +21,20 @@ namespace RightBrain
         {
             TestInsensitiveReplaceToLower();
             TestRemoveWord();
+            TestInsertWords();
+            TestCountWords();
+        }
+
+        private static void TestCountWords()
+        {
+            AssertEquals("gfdg dfg dfhdgfd,gdfgmdfmgmmgf gfsdf,sdgf   dfgdfg,sdf  sdfsdfsdf! dfg asdsdgggh  hghfh".CountWords(), 12);
+        }
+
+        private static void TestInsertWords()
+        {
+            AssertEquals("one two tree".InsertWords("mofo", 0), "mofo one two tree");
+            AssertEquals("one two tree".InsertWords("mofo", 1), "one mofo two tree");
+            AssertEquals("one two tree".InsertWords("mofo", 2), "one two mofo tree");
         }
 
         private static void TestRemoveWord()
@@ -187,12 +201,24 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("somewhere I fdhsdaytr"), "somewhere you fdhsdaytr");
             AssertEquals(Transformations.InvertFirstSecondPerson("somewhere you fdhsdaytr"), "somewhere I fdhsdaytr");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("you are listening while I talk"), "I am listening while you talk");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I am listening while you talk"), "You are listening while I talk");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("you are listening while I tasdfssdlk"), "I am listening while you tasdfssdlk");
+            AssertEquals(Transformations.InvertFirstSecondPerson("I am listening while you tasdfssdlk"), "You are listening while I tasdfssdlk");
         }
 
         private static void AssertEquals(string string1, string string2)
         {
             if (string1 != string2)
                 throw new Exception("Wrong value: "+string1 +" should be: "+string2);
+        }
+
+        private static void AssertEquals(int int1, int int2)
+        {
+            if (int1 != int2)
+                throw new Exception("Wrong value: " + int1 + " should be: " + int2);
         }
         #endregion
     }

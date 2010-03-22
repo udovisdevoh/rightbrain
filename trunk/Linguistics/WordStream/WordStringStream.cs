@@ -188,6 +188,15 @@ namespace Linguistics
         {
             return wordListAsStringLowerCase.Contains(word);
         }
+
+        /// <summary>
+        /// Word count
+        /// </summary>
+        /// <returns>word count</returns>
+        public int CountWords()
+        {
+            return wordListAsString.Count;
+        }
         #endregion
 
         #region Properties
