@@ -6,7 +6,7 @@ using System.Text;
 namespace Linguistics
 {
     /// <summary>
-    /// Manages the word "ain't"
+    /// Manages operations on the word "ain't"
     /// </summary>
     internal class AintManager
     {
