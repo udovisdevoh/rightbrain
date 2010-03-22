@@ -72,6 +72,27 @@ namespace Linguistics
             pointer++;
             return true;
         }
+
+        /// <summary>
+        /// Convert word stream to string
+        /// </summary>
+        /// <returns>converted to string</returns>
+        public override string ToString()
+        {
+            Reset();
+            string textValue = FirstDelimiter;
+
+            Word word;
+            while (this.TryGetNextWord(out word))
+            {
+                textValue += word.ToString();
+
+                if (word.RightDelimiter != null)
+                    textValue += word.RightDelimiter;
+            }
+
+            return textValue;
+        }
         #endregion
 
         #region IEnumerable<Word> Members

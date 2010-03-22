@@ -19,7 +19,7 @@ namespace Linguistics
         /// <summary>
         /// Performs negation of proposions
         /// </summary>
-        private static NegationAndAntonymManager negationAndAntonymManager = new NegationAndAntonymManager();
+        private static NegationManager negationAndAntonymManager = new NegationManager();
         #endregion
 
         #region Public Methods
@@ -28,7 +28,7 @@ namespace Linguistics
         /// </summary>
         /// <param name="originalText">original text</param>
         /// <returns>Text with YOU and I inverted (your and my etc...)</returns>
-        public static string InvertFirstSecondPerson(string originalText)
+        public static string InvertFirstSecondPerson(this string originalText)
         {
             return firstSecondPersonManager.InvertFirstSecondPerson(originalText);
         }
@@ -38,7 +38,7 @@ namespace Linguistics
         /// </summary>
         /// <param name="originalProposition">original proposition</param>
         /// <returns>Proposition with inverted negation or with antonyms</returns>
-        public static string InvertNegation(string originalProposition)
+        public static string InvertNegation(this string originalProposition)
         {
             return negationAndAntonymManager.InvertNegation(originalProposition);
         }
