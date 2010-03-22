@@ -153,17 +153,6 @@ namespace Linguistics
         {
             return wordInsertionManager.InsertWords(originalString, wordsToInsert, positionIndex);
         }
-
-        /// <summary>
-        /// Count how many words in string
-        /// </summary>
-        /// <param name="originalString"></param>
-        /// <returns></returns>
-        public static int CountWords(this string originalString)
-        {
-            WordStringStream wordStringStream = new WordStringStream(originalString);
-            return wordStringStream.CountWords();
-        }
         #endregion
 
         #region Internal Methods

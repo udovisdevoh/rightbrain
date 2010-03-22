@@ -12,6 +12,7 @@ namespace RightBrain
         public static void TestAll()
         {
             TestStringManipulations();
+            TestLinguisticsAnalysis();
             TestLinguisticsTransformations();
         }
         #endregion
@@ -22,7 +23,6 @@ namespace RightBrain
             TestInsensitiveReplaceToLower();
             TestRemoveWord();
             TestInsertWords();
-            TestCountWords();
         }
 
         private static void TestCountWords()
@@ -55,6 +55,11 @@ namespace RightBrain
             AssertEquals("I like musIc".ReplaceWordInsensitiveLower("music", "FooD"), "i like food");
             AssertEquals("Better is better".ReplaceWordKeepCase("better", "worse"), "Worse is worse");
             AssertEquals("You think YOU are the one, do you?".ReplaceWordKeepCase("you", "vous"), "Vous think VOUS are the one, do vous?");
+        }
+
+        private static void TestLinguisticsAnalysis()
+        {
+            TestCountWords();
         }
 
         private static void TestLinguisticsTransformations()

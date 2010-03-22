@@ -40,9 +40,11 @@ namespace Linguistics
         /// <returns>Proposition with inverted negation or with antonyms</returns>
         internal string InvertNegation(string originalProposition)
         {
+            #warning AntonymManager must be uncommented
             /*if (antonymManager.ContainsAntonym(originalProposition))
                 return antonymManager.InvertAntonym(originalProposition, 1);//must be put at first
-            else */if (originalProposition.ContainsWord("not"))
+            else */
+            if (originalProposition.ContainsWord("not"))
                 return originalProposition.RemoveWord("not", 1);
             else if (originalProposition.ContainsWord("ain't"))
                 return aintManager.RemoveAintOnce(originalProposition);
@@ -55,10 +57,7 @@ namespace Linguistics
             else if (Analysis.ContainsVerb(originalProposition))
                 return ntManager.AddDontBeforeFirstVerb(originalProposition);
 
-            #warning AntonymManager must be uncommented along with insertWord
             return originalProposition.InsertWords("It's not like",0);
-
-            return originalProposition;
         }
         #endregion
 
