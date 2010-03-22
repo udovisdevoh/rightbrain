@@ -56,7 +56,7 @@ namespace Linguistics
                 return ntManager.AddDontBeforeFirstVerb(originalProposition);
 
             #warning AntonymManager must be uncommented along with insertWord
-            //return originalProposition.InsertWord(0,"It's not like");
+            return originalProposition.InsertWords("It's not like",0);
 
             return originalProposition;
         }

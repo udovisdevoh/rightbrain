@@ -86,6 +86,9 @@ namespace Linguistics
             if (Analysis.IsQuestionBeginWord(previousWord) || previousWord.StartsWith("some") && Analysis.IsQuestionBeginWord(previousWord.Substring(4)))
                 return isSubject;
 
+            if (Analysis.IsSubordinatingConjunctionBeforeSubject(previousWord))
+                return isSubject;
+
             if (isNextWordVerb)
                 return isSubject;
 

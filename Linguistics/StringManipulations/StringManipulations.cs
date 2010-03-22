@@ -31,6 +31,11 @@ namespace Linguistics
         /// HashSet of possible word delimiters
         /// </summary>
         private static readonly HashSet<char> wordDelimiterHash;
+
+        /// <summary>
+        /// Manages insertions of words
+        /// </summary>
+        private static WordInsertionManager wordInsertionManager = new WordInsertionManager();
         #endregion
 
         #region Constructors
@@ -135,6 +140,29 @@ namespace Linguistics
         public static string RemoveWord(this string original, string wordToRemove, int occurenceCount)
         {
             return wordRemover.RemoveWord(original, wordToRemove, occurenceCount);
+        }
+
+        /// <summary>
+        /// Insert a word or a groupe of word at provided index (0: before everything)
+        /// </summary>
+        /// <param name="originalString">original string</param>
+        /// <param name="wordsToInsert">words to insert</param>
+        /// <param name="positionIndex">position index</param>
+        /// <returns>new string with inserted words</returns>
+        public static string InsertWords(this string originalString, string wordsToInsert, int positionIndex)
+        {
+            return wordInsertionManager.InsertWords(originalString, wordsToInsert, positionIndex);
+        }
+
+        /// <summary>
+        /// Count how many words in string
+        /// </summary>
+        /// <param name="originalString"></param>
+        /// <returns></returns>
+        public static int CountWords(this string originalString)
+        {
+            WordStringStream wordStringStream = new WordStringStream(originalString);
+            return wordStringStream.CountWords();
         }
         #endregion
 
