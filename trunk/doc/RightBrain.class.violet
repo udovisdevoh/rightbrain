@@ -210,14 +210,14 @@
    <object id="ClassNode12" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
-      <string>CompositeParser</string> 
+      <string>CompositeParaphraser</string> 
      </void> 
     </void> 
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>604.0</double> 
-     <double>467.0</double> 
+     <double>619.0</double> 
+     <double>468.0</double> 
     </void> 
    </object> 
   </void> 
@@ -225,14 +225,14 @@
    <object id="ClassNode13" class="com.horstmann.violet.ClassNode"> 
     <void property="name"> 
      <void property="text"> 
-      <string>NegativeParser</string> 
+      <string>NegativeParaphraser</string> 
      </void> 
     </void> 
    </object> 
    <object class="java.awt.geom.Point2D$Double"> 
     <void method="setLocation"> 
-     <double>485.0</double> 
-     <double>421.0</double> 
+     <double>455.0</double> 
+     <double>417.0</double> 
     </void> 
    </object> 
   </void> 
