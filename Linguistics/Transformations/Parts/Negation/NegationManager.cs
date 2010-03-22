@@ -21,6 +21,9 @@ namespace Linguistics
         /// </summary>
         private NotManager notManager = new NotManager();
 
+        /// <summary>
+        /// Manages operations on the word "ain't"
+        /// </summary>
         private AintManager aintManager = new AintManager();
 
         /// <summary>
