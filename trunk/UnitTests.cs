@@ -55,30 +55,33 @@ namespace RightBrain
             AssertEquals(Transformations.InvertNegation("I am watching you"), "I am not watching you");
 
             AssertEquals(Transformations.InvertNegation("I watch you"), "I don't watch you");
-            AssertEquals(Transformations.InvertNegation("I DoN't watch you"), "I watch you");
+            AssertEquals(Transformations.InvertNegation("I DoN't watch you"), "I Do watch you");
 
-            AssertEquals(Transformations.InvertNegation("I do Not watch you"), "I watch you");
-            AssertEquals(Transformations.InvertNegation("I do watch you"), "I do not watch you");
+            AssertEquals(Transformations.InvertNegation("I do Not watch you"), "I do watch you");
+            AssertEquals(Transformations.InvertNegation("I do watch you"), "I don't watch you");
 
-            AssertEquals(Transformations.InvertNegation("I woN't watch you"), "I will watch you");
-            AssertEquals(Transformations.InvertNegation("I Will watch you"), "I wont watch you");
+            AssertEquals(Transformations.InvertNegation("I wON't watch you"), "I wILL watch you");
+            AssertEquals(Transformations.InvertNegation("I Will watch you"), "I won't watch you");
 
             AssertEquals(Transformations.InvertNegation("I will nOT watch you"), "I will watch you");
 
-            AssertEquals(Transformations.InvertNegation("I LOVE you"), "I HATE you");
-            AssertEquals(Transformations.InvertNegation("I hate you"), "I love you");
-
-            AssertEquals(Transformations.InvertNegation("This is hot"), "This is cold");
-            AssertEquals(Transformations.InvertNegation("This is cold"), "This is hot");
-
-            AssertEquals(Transformations.InvertNegation("You AIN'T a dancer"), "You ARE a dancer");
-            AssertEquals(Transformations.InvertNegation("You AIN'T no dancer"), "You ARE a dancer");
+            AssertEquals(Transformations.InvertNegation("You AIN'T a dancer"), "You are a dancer");
+            AssertEquals(Transformations.InvertNegation("You AIN'T no dancer"), "You are a dancer");
 
             AssertEquals(Transformations.InvertNegation("You ain't a dancer"), "You are a dancer");
             AssertEquals(Transformations.InvertNegation("You ain't no dancer"), "You are a dancer");
 
             AssertEquals(Transformations.InvertNegation("You are fofdghdsting your homework"), "You are not fofdghdsting your homework");
             AssertEquals(Transformations.InvertNegation("You are not fofdghdsting your homework"), "You are fofdghdsting your homework");
+
+            AssertEquals(Transformations.InvertNegation("fhh fdgfdghdsaf"), "It's not like fhh fdgfdghdsaf");
+            AssertEquals(Transformations.InvertNegation("Fhh fdgfdghdsaf"), "It's not like Fhh fdgfdghdsaf");
+
+            AssertEquals(Transformations.InvertNegation("I LOVE you"), "I HATE you");
+            AssertEquals(Transformations.InvertNegation("I hate you"), "I love you");
+
+            AssertEquals(Transformations.InvertNegation("This is hot"), "This is cold");
+            AssertEquals(Transformations.InvertNegation("This is cold"), "This is hot");
         }
 
         private static void TestInvertFirstSecondPerson()

@@ -22,6 +22,11 @@ namespace Linguistics
         private List<string> wordListAsString;
 
         /// <summary>
+        /// List of words in lowercase
+        /// </summary>
+        private List<string> wordListAsStringLowerCase;
+
+        /// <summary>
         /// First delimiter before first word
         /// </summary>
         private string firstDelimiter;
@@ -45,6 +50,7 @@ namespace Linguistics
         public WordStringStream(string sourceText)
         {
             wordListAsString = new List<string>();
+            wordListAsStringLowerCase = new List<string>();
             delimiterList = new List<string>();
             listSentenceBegin = new HashSet<int>();
 
@@ -64,6 +70,7 @@ namespace Linguistics
                     if (currentWord != string.Empty)
                     {
                         wordListAsString.Add(currentWord);
+                        wordListAsStringLowerCase.Add(currentWord.ToLower());
 
                         if (previousDelimiter != null && (previousDelimiter.Contains('.') || previousDelimiter.Contains('!') || previousDelimiter.Contains('?')))
                             listSentenceBegin.Add(wordListAsString.Count - 1);
@@ -179,7 +186,7 @@ namespace Linguistics
         /// <returns>Whether word stream contains specified word</returns>
         public bool ContainsWord(string word)
         {
-            return wordListAsString.Contains(word);
+            return wordListAsStringLowerCase.Contains(word);
         }
         #endregion
 
