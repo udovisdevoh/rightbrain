@@ -55,7 +55,7 @@
     <Compile Include="Linguistics\Transformations\Parts\Negation\AintManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Synonyms\SynonymManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Negation\NegationAndAntonymManager.cs" />
+    <Compile Include="Linguistics\Transformations\Parts\Negation\NegationManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Negation\NotManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Negation\NtManager.cs" />
     <Compile Include="Linguistics\Transformations\Transformations.cs" />
