@@ -29,7 +29,7 @@ namespace Linguistics
         /// <summary>
         /// Manages operations on antonyms
         /// </summary>
-        private static SynonymManager synonymManager = new SynonymManager("Linguistics/WordLists/antonymList.xml");
+        private static SynonymManager synonymManager = new SynonymManager();
         #endregion
 
         #region Internal Methods
@@ -41,9 +41,6 @@ namespace Linguistics
         internal string InvertNegation(string originalProposition)
         {
             #warning AntonymManager must be uncommented
-            /*if (antonymManager.ContainsAntonym(originalProposition))
-                return antonymManager.InvertAntonym(originalProposition, 1);//must be put at first
-            else */
             if (originalProposition.ContainsWord("not"))
                 return originalProposition.RemoveWord("not", 1);
             else if (originalProposition.ContainsWord("ain't"))
@@ -54,6 +51,8 @@ namespace Linguistics
                 return ntManager.AddNt(originalProposition, 1);
             else if (ContainsWordEndingWithIng(originalProposition))
                 return notManager.AddNotBeforeFirstWordEndingWithIng(originalProposition);
+            else if (synonymManager.ContainsAntonym(originalProposition))
+                return synonymManager.InvertAntonym(originalProposition, 1);
             else if (Analysis.ContainsVerb(originalProposition))
                 return ntManager.AddDontBeforeFirstVerb(originalProposition);
 
