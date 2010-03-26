@@ -62,6 +62,11 @@ namespace Linguistics
             return false;
         }
 
+        /// <summary>
+        /// Add "not" before first word that can be followed by "not"
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <returns>altered proposition</returns>
         internal string AddNotAfterFirstWordForIt(string originalProposition)
         {
             WordStringStream wordStringStream = new WordStringStream(originalProposition);
