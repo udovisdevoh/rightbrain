@@ -43,35 +43,50 @@ namespace Linguistics
 
         #region Public Methods
         /// <summary>
-        /// Try find an antonym for provided word or return false if none found
+        /// Try find best antonym or synonym for provided word or return false if none found
         /// </summary>
         /// <param name="originalWord">original word</param>
         /// <returns>Try find an antonym for provided word or return false if none found</returns>
-        private string TryFindAntonym(string originalWord)
+        private string TryFindBestAntonymOrSynonym(string originalWord, Matrix matrix)
         {
             originalWord = originalWord.ToLower().Trim();
 
             Dictionary<string,float> matrixData;
+            string bestYet = null;
+            double bestValue = 0f;
 
-            if (antonymMatrix.NormalData.TryGetValue(originalWord, out matrixData))
+            if (matrix.NormalData.TryGetValue(originalWord, out matrixData))
             {
-                if (matrixData.Count < 1)
-                    return null;
-
-                foreach (string key in matrixData.Keys)
-                    return key;
-
-            }
-            else if (antonymMatrix.ReversedData.TryGetValue(originalWord, out matrixData))
-            {
-                if (matrixData.Count < 1)
-                    return null;
-
-                foreach (string key in matrixData.Keys)
-                    return key;
+                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
+                {
+                    string word = wordAndValue.Key;
+                    float value = wordAndValue.Value;
+                    
+                    if (bestYet == null || value > bestValue)
+                    {
+                        bestYet = word;
+                        bestValue = value;
+                    }
+                }
             }
             
-            return null;
+            if (matrix.ReversedData.TryGetValue(originalWord, out matrixData))
+            {
+                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
+                {
+                    string word = wordAndValue.Key;
+                    float value = wordAndValue.Value;
+
+                    if (bestYet == null || value > bestValue)
+                    {
+                        bestYet = word;
+                        bestValue = value;
+                    }
+                }
+            }
+
+
+            return bestYet;
         }
         #endregion
 
@@ -91,7 +106,7 @@ namespace Linguistics
             {
                 if (replacementCount < desiredOccurenceReplacement)
                 {
-                    string foundAntoym = TryFindAntonym(word.StringValue);
+                    string foundAntoym = TryFindBestAntonymOrSynonym(word.StringValue,antonymMatrix);
                     if (foundAntoym != null)
                     {
                         word.StringValue = foundAntoym;

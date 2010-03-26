@@ -10,6 +10,13 @@ namespace Linguistics
     /// </summary>
     internal class NotManager
     {
+        #region Parts
+        /// <summary>
+        /// List of words that can be followed by "not"
+        /// </summary>
+        private WordListFromFile wordToPutNotAfterList = new WordListFromFile("Linguistics/WordLists/wordToPutNotAfterList.txt");
+        #endregion
+
         #region Internal Methods
         /// <summary>
         /// Add word "not" before first word ending with "ing" or "in'"
@@ -29,6 +36,45 @@ namespace Linguistics
                 if (!alreadyDid && (currentWord.ToLower().EndsWith("ing") || currentWord.ToLower().EndsWith("in'")))
                 {
                     currentWord = "not " + currentWord;
+                    alreadyDid = true;
+                }
+
+                newString += currentWord;
+
+                if (currentDelimiter != null)
+                    newString += currentDelimiter;
+            }
+
+            return newString;
+        }
+
+        /// <summary>
+        /// Whether there is a word that can be followed by "not" in original proposition
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <returns>Whether there is a word that can be followed by "not" in original proposition</returns>
+        internal bool ContaisnWordToPutNotAfter(string originalProposition)
+        {
+            foreach (string word in new WordStringStream(originalProposition))
+                if (wordToPutNotAfterList.ContainsExact(word.ToLower()))
+                    return true;
+
+            return false;
+        }
+
+        internal string AddNotAfterFirstWordForIt(string originalProposition)
+        {
+            WordStringStream wordStringStream = new WordStringStream(originalProposition);
+            string newString = wordStringStream.FirstDelimiter;
+
+            bool alreadyDid = false;
+
+            string currentWord, currentDelimiter;
+            while (wordStringStream.TryGetNextWord(out currentWord, out currentDelimiter))
+            {
+                if (!alreadyDid && wordToPutNotAfterList.ContainsExact(currentWord.ToLower()))
+                {
+                    currentWord = currentWord + " not";
                     alreadyDid = true;
                 }
 
