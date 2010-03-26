@@ -1,0 +1,12 @@
+is
+are
+can
+shall
+will
+must
+may
+could
+might
+ought
+should
+would
