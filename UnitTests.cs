@@ -60,6 +60,72 @@ namespace RightBrain
         private static void TestLinguisticsAnalysis()
         {
             TestCountWords();
+            TestIsQuestion();
+        }
+
+        private static void TestIsQuestion()
+        {
+            AssertEquals("You like music?".IsQuestion(), true);
+            AssertEquals("You like music".IsQuestion(), false);
+            AssertEquals("Do you like music?".IsQuestion(), true);
+            AssertEquals("Do you like music".IsQuestion(), true);
+            AssertEquals("What do you like".IsQuestion(), true);
+            AssertEquals("What are you doing".IsQuestion(), true);
+            AssertEquals("What do you like?".IsQuestion(), true);
+            AssertEquals("What are you doing?".IsQuestion(), true);
+            AssertEquals("When are you going".IsQuestion(), true);
+            AssertEquals("You like what?".IsQuestion(), true);
+            AssertEquals("You like what".IsQuestion(), false);
+            AssertEquals("say what?".IsQuestion(), true);
+            AssertEquals("say what".IsQuestion(), true);
+            AssertEquals("which one you choose?".IsQuestion(), true);
+            AssertEquals("which one you choose".IsQuestion(), true);
+            AssertEquals("I'm the one which is the best".IsQuestion(), false);
+            AssertEquals("I'm the one who is the best".IsQuestion(), false);
+            AssertEquals("How are you doing?".IsQuestion(), true);
+            AssertEquals("How are you doing".IsQuestion(), true);
+            AssertEquals("How do you do?".IsQuestion(), true);
+            AssertEquals("This is how we do it".IsQuestion(), false);
+            AssertEquals("Is this how we do it?".IsQuestion(), true);
+            AssertEquals("Are you a retard?".IsQuestion(), true);
+            AssertEquals("Are you a retard".IsQuestion(), true);
+            AssertEquals("Is this a retard?".IsQuestion(), true);
+            AssertEquals("Is this a retard".IsQuestion(), true);
+            AssertEquals("This is a retard".IsQuestion(), false);
+            AssertEquals("This is a retard?".IsQuestion(), false);
+            AssertEquals("This is a retard?".IsQuestion(), false);
+            AssertEquals("Is it ok?".IsQuestion(), true);
+            AssertEquals("Is it ok".IsQuestion(), true);
+            AssertEquals("Are you ok?".IsQuestion(), true);
+            AssertEquals("Are you ok".IsQuestion(), true);
+            AssertEquals("This is ok".IsQuestion(), false);
+            AssertEquals("You are ok".IsQuestion(), false);
+            AssertEquals("When do you come?".IsQuestion(), true);
+            AssertEquals("When do you come".IsQuestion(), true);
+            AssertEquals("Who are you?".IsQuestion(), true);
+            AssertEquals("Who are you".IsQuestion(), true);
+            AssertEquals("This is who you are".IsQuestion(), false);
+            AssertEquals("This is who you are".IsQuestion(), false);
+            AssertEquals("Whose planet is it?".IsQuestion(), true);
+            AssertEquals("Whom Do We Remember?".IsQuestion(), true);
+            AssertEquals("Whom Do We Remember".IsQuestion(), true);
+            AssertEquals("Where do you live?".IsQuestion(), true);
+            AssertEquals("Where do you live".IsQuestion(), true);
+            AssertEquals("This is where I go".IsQuestion(), false);
+            AssertEquals("I will tell you when".IsQuestion(), false);
+            AssertEquals("Would you fuck a dog?".IsQuestion(), true);
+            AssertEquals("Would you fuck a dog".IsQuestion(), true);
+            AssertEquals("You would fuck a dog".IsQuestion(), false);
+            AssertEquals("Can't you hear?".IsQuestion(), true);
+            AssertEquals("Can't you hear".IsQuestion(), true);
+            AssertEquals("You can hear".IsQuestion(), false);
+            AssertEquals("You can't hear".IsQuestion(), false);
+        }
+
+        private static void AssertEquals(bool bool1, bool bool2)
+        {
+            if (bool1 != bool2)
+                throw new Exception("Both should be true or false");
         }
 
         private static void TestLinguisticsTransformations()

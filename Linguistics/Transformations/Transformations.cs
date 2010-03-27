@@ -25,6 +25,11 @@ namespace Linguistics
         /// Manages operations and analysys on synonyms and antonyms
         /// </summary>
         private static SynonymManager synonymManager = new SynonymManager();
+
+        /// <summary>
+        /// Manages operations and analysis on questions
+        /// </summary>
+        private static QuestionManager questionManager = new QuestionManager();
         #endregion
 
         #region Public Methods
@@ -87,6 +92,16 @@ namespace Linguistics
         public static bool ContainsAntonym(this string originalProposition)
         {
             return synonymManager.ContainsAntonym(originalProposition);
+        }
+
+        /// <summary>
+        /// Whether provied proposition is question or not
+        /// </summary>
+        /// <param name="originalProposition">provided proposition</param>
+        /// <returns>Whether provied proposition is question or not</returns>
+        public static bool IsQuestion(this string originalProposition)
+        {
+            return questionManager.IsQuestion(originalProposition);
         }
         #endregion
     }
