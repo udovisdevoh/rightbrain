@@ -55,19 +55,19 @@ namespace Linguistics
         {
             return IsModalVerb(word) || IsIrregularVerb(word) || IsRegularVerb(word) || IsUndefinedVerb(word);
         }
-        #endregion
 
-        #region Private Methods
         /// <summary>
         /// Whether the word is in modal verb list
         /// </summary>
         /// <param name="word">word</param>
         /// <returns>Whether the word is in modal verb list</returns>
-        private bool IsModalVerb(string word)
+        internal bool IsModalVerb(string word)
         {
             return modalVerbList.ContainsAsNegativeOrPositiveForm(word);
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Whether the word is in irregular verb list
         /// </summary>

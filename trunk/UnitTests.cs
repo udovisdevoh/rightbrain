@@ -75,7 +75,7 @@ namespace RightBrain
             AssertEquals("What are you doing?".IsQuestion(), true);
             AssertEquals("When are you going".IsQuestion(), true);
             AssertEquals("You like what?".IsQuestion(), true);
-            AssertEquals("You like what".IsQuestion(), false);
+            AssertEquals("You like what".IsQuestion(), true);
             AssertEquals("say what?".IsQuestion(), true);
             AssertEquals("say what".IsQuestion(), true);
             AssertEquals("which one you choose?".IsQuestion(), true);
@@ -92,8 +92,7 @@ namespace RightBrain
             AssertEquals("Is this a retard?".IsQuestion(), true);
             AssertEquals("Is this a retard".IsQuestion(), true);
             AssertEquals("This is a retard".IsQuestion(), false);
-            AssertEquals("This is a retard?".IsQuestion(), false);
-            AssertEquals("This is a retard?".IsQuestion(), false);
+            AssertEquals("This is a retard?".IsQuestion(), true);
             AssertEquals("Is it ok?".IsQuestion(), true);
             AssertEquals("Is it ok".IsQuestion(), true);
             AssertEquals("Are you ok?".IsQuestion(), true);
@@ -113,6 +112,7 @@ namespace RightBrain
             AssertEquals("Where do you live".IsQuestion(), true);
             AssertEquals("This is where I go".IsQuestion(), false);
             AssertEquals("I will tell you when".IsQuestion(), false);
+            AssertEquals("I will tell you why".IsQuestion(), false);
             AssertEquals("Would you fuck a dog?".IsQuestion(), true);
             AssertEquals("Would you fuck a dog".IsQuestion(), true);
             AssertEquals("You would fuck a dog".IsQuestion(), false);

@@ -20,6 +20,16 @@ namespace Linguistics
         /// Manages questions that are questions because they start with question starting words
         /// </summary>
         private QuestionManagerByStartingWithQuestionWord questionManagerByStartingWithQuestionWord = new QuestionManagerByStartingWithQuestionWord();
+
+        /// <summary>
+        /// Manages questions that are questions because they end with a special word for questions
+        /// </summary>
+        private QuestionManagerByEndingWord questionManagerByEndingWord = new QuestionManagerByEndingWord();
+
+        /// <summary>
+        /// Manages questions that are questions because they begin with modal verbs
+        /// </summary>
+        private QuestionManagerByModalVerb questionManagerByModalVerb = new QuestionManagerByModalVerb();
         #endregion
 
         #region Internal Methods
@@ -30,7 +40,13 @@ namespace Linguistics
         /// <returns>Whether provied proposition is question or not</returns>
         internal bool IsQuestion(string originalProposition)
         {
+            originalProposition = originalProposition.ToLower();
+
             if (questionManagerByStartingWithQuestionWord.IsQuestion(originalProposition))
+                return true;
+            else if (questionManagerByModalVerb.IsQuestion(originalProposition))
+                return true;
+            else if (questionManagerByEndingWord.IsQuestion(originalProposition))
                 return true;
             else if (questionManagerByMarkOnly.IsQuestion(originalProposition))
                 return true;
