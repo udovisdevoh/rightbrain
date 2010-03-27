@@ -25,11 +25,6 @@ namespace Linguistics
         /// Manages operations on the word "ain't"
         /// </summary>
         private AintManager aintManager = new AintManager();
-
-        /// <summary>
-        /// Manages operations on antonyms
-        /// </summary>
-        private static SynonymManager synonymManager = new SynonymManager();
         #endregion
 
         #region Internal Methods
@@ -54,8 +49,8 @@ namespace Linguistics
                 return notManager.AddNotAfterFirstWordForIt(originalProposition);
             else if (Analysis.ContainsVerb(originalProposition))
                 return ntManager.AddDontBeforeFirstVerb(originalProposition);
-            else if (synonymManager.ContainsAntonym(originalProposition))
-                return synonymManager.InvertAntonym(originalProposition, 1);
+            else if (Transformations.ContainsAntonym(originalProposition))
+                return Transformations.InvertAntonym(originalProposition, 1);
 
             return originalProposition.InsertWords("It's not like",0);
         }

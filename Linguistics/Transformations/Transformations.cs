@@ -20,6 +20,11 @@ namespace Linguistics
         /// Performs negation of proposions
         /// </summary>
         private static NegationManager negationAndAntonymManager = new NegationManager();
+
+        /// <summary>
+        /// Manages operations and analysys on synonyms and antonyms
+        /// </summary>
+        private static SynonymManager synonymManager = new SynonymManager();
         #endregion
 
         #region Public Methods
@@ -41,6 +46,47 @@ namespace Linguistics
         public static string InvertNegation(this string originalProposition)
         {
             return negationAndAntonymManager.InvertNegation(originalProposition);
+        }
+
+        /// <summary>
+        /// Try find best synonym for word or return null if none found
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>best synonym found for word or return null if none found</returns>
+        public static string TryFindBestSynonym(this string word)
+        {
+            return synonymManager.TryFindBestSynonym(word);
+        }
+
+        /// <summary>
+        /// Try find best antonym for word or return null if none found
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>best antonym found for word or return null if none found</returns>
+        public static string TryFindBestAntonym(this string word)
+        {
+            return synonymManager.TryFindBestAntonym(word);
+        }
+
+                /// <summary>
+        /// Invert words to their antonym in proposition
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <param name="desiredOccurenceReplacement">desired occurence replacement</param>
+        /// <returns>Proposition with inverted antonym</returns>
+        public static string InvertAntonym(this string originalProposition, int desiredOccurenceReplacement)
+        {
+            return synonymManager.InvertAntonym(originalProposition, desiredOccurenceReplacement);
+        }
+
+        /// <summary>
+        /// Whether there is a know antonym to replace a word in original proposition
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <returns>Whether there is a know antonym to replace a word in original proposition</returns>
+        public static bool ContainsAntonym(this string originalProposition)
+        {
+            return synonymManager.ContainsAntonym(originalProposition);
         }
         #endregion
     }
