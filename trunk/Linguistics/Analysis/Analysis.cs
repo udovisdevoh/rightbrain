@@ -45,7 +45,9 @@ namespace Linguistics
         /// List of subordinating conjunctions that can be put before subject. For instance: while, if
         /// </summary>
         private static WordListFromFile subordinatingConjunctionBeforeSubjectList = new WordListFromFile("Linguistics/WordLists/subordinatingConjunctionBeforeSubjectList.txt");
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Count how many words in string
         /// </summary>
@@ -56,9 +58,7 @@ namespace Linguistics
             WordStringStream wordStringStream = new WordStringStream(originalString);
             return wordStringStream.CountWords();
         }
-        #endregion
 
-        #region Public Methods
         /// <summary>
         /// Whether the word is a verb
         /// </summary>

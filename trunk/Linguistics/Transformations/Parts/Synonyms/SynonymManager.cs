@@ -6,7 +6,7 @@ using System.Text;
 namespace Linguistics
 {
     /// <summary>
-    /// Manages operations on antonyms
+    /// Manages operations and analysys on synonyms and antonyms
     /// </summary>
     internal class SynonymManager
     {
@@ -41,55 +41,6 @@ namespace Linguistics
         private Matrix _antonymMatrix = null;
         #endregion
 
-        #region Public Methods
-        /// <summary>
-        /// Try find best antonym or synonym for provided word or return false if none found
-        /// </summary>
-        /// <param name="originalWord">original word</param>
-        /// <returns>Try find an antonym for provided word or return false if none found</returns>
-        private string TryFindBestAntonymOrSynonym(string originalWord, Matrix matrix)
-        {
-            originalWord = originalWord.ToLower().Trim();
-
-            Dictionary<string,float> matrixData;
-            string bestYet = null;
-            double bestValue = 0f;
-
-            if (matrix.NormalData.TryGetValue(originalWord, out matrixData))
-            {
-                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
-                {
-                    string word = wordAndValue.Key;
-                    float value = wordAndValue.Value;
-                    
-                    if (bestYet == null || value > bestValue)
-                    {
-                        bestYet = word;
-                        bestValue = value;
-                    }
-                }
-            }
-            
-            if (matrix.ReversedData.TryGetValue(originalWord, out matrixData))
-            {
-                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
-                {
-                    string word = wordAndValue.Key;
-                    float value = wordAndValue.Value;
-
-                    if (bestYet == null || value > bestValue)
-                    {
-                        bestYet = word;
-                        bestValue = value;
-                    }
-                }
-            }
-
-
-            return bestYet;
-        }
-        #endregion
-
         #region Internal Methods
         /// <summary>
         /// Invert words to their antonym in proposition
@@ -106,7 +57,7 @@ namespace Linguistics
             {
                 if (replacementCount < desiredOccurenceReplacement)
                 {
-                    string foundAntoym = TryFindBestAntonymOrSynonym(word.StringValue,antonymMatrix);
+                    string foundAntoym = TryFindBestAntonymOrSynonym(word.StringValue, antonymMatrix);
                     if (foundAntoym != null)
                     {
                         word.StringValue = foundAntoym;
@@ -136,6 +87,76 @@ namespace Linguistics
                     return true;
 
             return false;
+        }
+
+        /// <summary>
+        /// Try find best synonym for provided word or return null if none found
+        /// </summary>
+        /// <param name="originalWord">original word</param>
+        /// <returns>Try find an synonym for provided word or return null if none found</returns>
+        internal string TryFindBestSynonym(string originalWord)
+        {
+            return this.TryFindBestAntonymOrSynonym(originalWord, synonymMatrix);
+        }
+
+        /// <summary>
+        /// Try find best antonym for provided word or return null if none found
+        /// </summary>
+        /// <param name="originalWord">original word</param>
+        /// <returns>Try find an antonym for provided word or return null if none found</returns>
+        internal string TryFindBestAntonym(string originalWord)
+        {
+            return this.TryFindBestAntonymOrSynonym(originalWord, antonymMatrix);
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Try find best antonym or synonym for provided word or return null if none found
+        /// </summary>
+        /// <param name="originalWord">original word</param>
+        /// <param name="matrix">matrix to use</param>
+        /// <returns>Try find an synonym or antonym for provided word or return null if none found</returns>
+        private string TryFindBestAntonymOrSynonym(string originalWord, Matrix matrix)
+        {
+            originalWord = originalWord.ToLower().Trim();
+
+            Dictionary<string, float> matrixData;
+            string bestYet = null;
+            double bestValue = 0f;
+
+            if (matrix.NormalData.TryGetValue(originalWord, out matrixData))
+            {
+                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
+                {
+                    string word = wordAndValue.Key;
+                    float value = wordAndValue.Value;
+
+                    if (bestYet == null || value > bestValue)
+                    {
+                        bestYet = word;
+                        bestValue = value;
+                    }
+                }
+            }
+
+            if (matrix.ReversedData.TryGetValue(originalWord, out matrixData))
+            {
+                foreach (KeyValuePair<string, float> wordAndValue in matrixData)
+                {
+                    string word = wordAndValue.Key;
+                    float value = wordAndValue.Value;
+
+                    if (bestYet == null || value > bestValue)
+                    {
+                        bestYet = word;
+                        bestValue = value;
+                    }
+                }
+            }
+
+
+            return bestYet;
         }
         #endregion
 
@@ -168,5 +189,6 @@ namespace Linguistics
             }
         }
         #endregion
+
     }
 }
