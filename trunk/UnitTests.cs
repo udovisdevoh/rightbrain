@@ -66,6 +66,18 @@ namespace RightBrain
         {
             TestInvertFirstSecondPerson();
             TestInvertNegation();
+            TestSynonyms();
+            TestAntonyms();
+        }
+
+        private static void TestSynonyms()
+        {
+            AssertEquals("cool".TryFindBestSynonym(), "chill");
+        }
+
+        private static void TestAntonyms()
+        {
+            AssertEquals("big".TryFindBestAntonym(),"atomic");
         }
 
         private static void TestInvertNegation()
