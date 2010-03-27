@@ -9,3 +9,9 @@ why
 how
 do
 does
+is
+are
+isn't
+aren't
+won't
+shan't
