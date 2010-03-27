@@ -42,6 +42,11 @@ namespace Linguistics
         private static WordListFromFile questionBeginList = new WordListFromFile("Linguistics/WordLists/questionBeginWordList.txt");
 
         /// <summary>
+        /// List of words like "when, why, how, where" for question endings
+        /// </summary>
+        private static WordListFromFile questionEndingList = new WordListFromFile("Linguistics/WordLists/questionEndingWordList.txt");
+
+        /// <summary>
         /// List of subordinating conjunctions that can be put before subject. For instance: while, if
         /// </summary>
         private static WordListFromFile subordinatingConjunctionBeforeSubjectList = new WordListFromFile("Linguistics/WordLists/subordinatingConjunctionBeforeSubjectList.txt");
@@ -68,6 +73,17 @@ namespace Linguistics
         {
             word = word.ToLower();
             return verbManager.IsVerb(word);
+        }
+
+        /// <summary>
+        /// Whether the word is a modal verb
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>Whether the word is a modal verb</returns>
+        public static bool IsModalVerb(this string word)
+        {
+            word = word.ToLower();
+            return verbManager.IsModalVerb(word);
         }
 
         /// <summary>
@@ -122,6 +138,17 @@ namespace Linguistics
         {
             word = word.ToLower();
             return questionBeginList.ContainsExact(word);
+        }
+
+        /// <summary>
+        /// Whether word is a word like: "how, when, where, why" for question ending
+        /// </summary>
+        /// <param name="word">word</param>
+        /// <returns>Whether word is a word like: "how, when, where, why" etc</returns>
+        public static bool IsQuestionEndingWord(this string word)
+        {
+            word = word.ToLower();
+            return questionEndingList.ContainsExact(word);
         }
 
         /// <summary>

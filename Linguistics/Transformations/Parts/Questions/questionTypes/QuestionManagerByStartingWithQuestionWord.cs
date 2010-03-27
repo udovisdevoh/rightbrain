@@ -18,10 +18,8 @@ namespace Linguistics
         /// <returns>Whether proposition is detected to be a question because it starts with a question word</returns>
         internal bool IsQuestion(string originalProposition)
         {
-            foreach (string word in new WordStringStream(originalProposition))
-                if (word.IsQuestionBeginWord())
-                    return true;
-            return false;
+            WordStringStream wordStringStream = new WordStringStream(originalProposition);
+            return wordStringStream.First().IsQuestionBeginWord();
         }
         #endregion
     }

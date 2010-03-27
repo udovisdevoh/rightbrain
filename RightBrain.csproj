@@ -54,7 +54,9 @@
     <Compile Include="Linguistics\StringManipulations\Parts\WordRemover.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Negation\AintManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\QuestionManager.cs" />
+    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByEndingWord.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByMarkOnly.cs" />
+    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByModalVerb.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByStartingWithQuestionWord.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Synonyms\SynonymManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
@@ -123,6 +125,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Linguistics\WordLists\wordToPutNotAfterList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Linguistics\WordLists\questionEndingWordList.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
