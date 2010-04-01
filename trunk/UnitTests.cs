@@ -134,6 +134,68 @@ namespace RightBrain
             TestInvertNegation();
             TestSynonyms();
             TestAntonyms();
+            TestInvertQuestion();
+        }
+
+        private static void TestInvertQuestion()
+        {
+            AssertEquals("You like music?".InvertQuestion(), "you like music");
+            AssertEquals("You like music".InvertQuestion(), "do you like music?");
+            AssertEquals("Do you like music?".InvertQuestion(), "you like music");
+            AssertEquals("Do you like music".InvertQuestion(), "you like music");
+            AssertEquals("What do you like".InvertQuestion(), "you like");
+            AssertEquals("What are you doing".InvertQuestion(), "you are doing");
+            AssertEquals("What do you like?".InvertQuestion(), "you like");
+            AssertEquals("What are you doing?".InvertQuestion(), "you are doing");
+            AssertEquals("When are you going".InvertQuestion(), "you are going");
+            AssertEquals("You like what?".InvertQuestion(), "you like");
+            AssertEquals("You like what".InvertQuestion(), "you like");
+            AssertEquals("say what?".InvertQuestion(), "say");
+            AssertEquals("say what".InvertQuestion(), "say");
+            AssertEquals("which one do you choose?".InvertQuestion(), "you choose");
+            AssertEquals("which one do you choose".InvertQuestion(), "you choose");
+            AssertEquals("which one you choose?".InvertQuestion(), "you choose");
+            AssertEquals("which one you choose".InvertQuestion(), "you choose");
+            AssertEquals("I'm the one which is the best".InvertQuestion(), "which one is the best?");
+            AssertEquals("I'm the one who is the best".InvertQuestion(), "who is the best?");
+            AssertEquals("How are you doing?".InvertQuestion(), "you are doing");
+            AssertEquals("How are you doing".InvertQuestion(), "you are doing");
+            AssertEquals("How do you do?".InvertQuestion(), "you do");
+            AssertEquals("This is how we do it".InvertQuestion(), "how do we do it");
+            AssertEquals("Is this how we do it?".InvertQuestion(), "we do it");
+            AssertEquals("Are you a retard?".InvertQuestion(), "you are a retard");
+            AssertEquals("Are you a retard".InvertQuestion(), "you are a retard");
+            AssertEquals("Is this a retard?".InvertQuestion(), "this is a retard");
+            AssertEquals("Is this a retard".InvertQuestion(), "this is a retard");
+            AssertEquals("This is a retard".InvertQuestion(), "is this a retard?");
+            AssertEquals("This is a retard?".InvertQuestion(), "is this a retard?");
+            AssertEquals("Is it ok?".InvertQuestion(), "this is ok");
+            AssertEquals("Is it ok".InvertQuestion(), "this is ok");
+            AssertEquals("Are you ok?".InvertQuestion(), "you are ok");
+            AssertEquals("Are you ok".InvertQuestion(), "you are ok");
+            AssertEquals("This is ok".InvertQuestion(), "is this ok?");
+            AssertEquals("You are ok".InvertQuestion(), "are you ok?");
+            AssertEquals("When do you come?".InvertQuestion(), "you come");
+            AssertEquals("When do you come".InvertQuestion(), "you come when");
+            AssertEquals("When do you come to my house".InvertQuestion(), "you come to my house when");
+            AssertEquals("Who are you?".InvertQuestion(), "you are");
+            AssertEquals("Who are you".InvertQuestion(), "you are");
+            AssertEquals("This is who you are".InvertQuestion(), "who are you?");
+            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
+            AssertEquals("Whom Do We Remember?".InvertQuestion(), "We remember");
+            AssertEquals("Whom Do We Remember".InvertQuestion(), "We remember");
+            AssertEquals("Where do you live?".InvertQuestion(), "You live");
+            AssertEquals("Where do you live".InvertQuestion(), "You live");
+            AssertEquals("This is where I go".InvertQuestion(), "I go");
+            AssertEquals("I will tell you when".InvertQuestion(), "When will I tell you?");
+            AssertEquals("I will tell you why".InvertQuestion(), "Why will I tell you?");
+            AssertEquals("Would you fuck a dog?".InvertQuestion(), "You would fuck a dog");
+            AssertEquals("Would you fuck a dog".InvertQuestion(), "You would fuck a dog");
+            AssertEquals("You would fuck a dog".InvertQuestion(), "Would you fuck a dog?");
+            AssertEquals("Can't you hear?".InvertQuestion(), "You can't hear");
+            AssertEquals("Can't you hear".InvertQuestion(), "You can't hear");
+            AssertEquals("You can hear".InvertQuestion(), "Can you hear?");
+            AssertEquals("You can't hear".InvertQuestion(), "Can't you hear?");
         }
 
         private static void TestSynonyms()
