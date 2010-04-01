@@ -18,7 +18,18 @@ namespace Linguistics
         /// <returns>Whether question was detected by ?</returns>
         internal bool IsQuestion(string originalProposition)
         {
+            originalProposition = originalProposition.ToLower();
             return originalProposition.Contains('?');
+        }
+
+        /// <summary>
+        /// Remove question mark
+        /// </summary>
+        /// <param name="originalProposition">originalProposition</param>
+        /// <returns>proposition with question mark removed</returns>
+        internal string RemoveQuestion(string originalProposition)
+        {
+            return originalProposition.Replace('?', '.');
         }
         #endregion
     }
