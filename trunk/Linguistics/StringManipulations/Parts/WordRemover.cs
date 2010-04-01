@@ -89,15 +89,15 @@ namespace Linguistics
             {
                 if (wordCounter == wordPosition && wordCounter != 0)
                 {
-                    if (isKeepDelimiterAfterNotBefore)
+                    if (isKeepDelimiterAfterNotBefore && word.RightDelimiter != null)
                         newString += word.RightDelimiter;
-                    else
+                    else if (word.LeftDelimiter != null)
                         newString += word.LeftDelimiter;
                 }
-                else
+                else if (wordCounter != wordPosition)
                 {
                     newString += word.ToString();
-                    if (word.RightDelimiter != null)
+                    if (word.RightDelimiter != null && wordCounter != wordPosition -1)
                         newString += word.RightDelimiter;
                 }
 
