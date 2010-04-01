@@ -156,9 +156,10 @@ namespace RightBrain
         private static void TestInvertQuestion()
         {
             AssertEquals("You like music?".InvertQuestion(), "You like music.");
-            AssertEquals("You like music".InvertQuestion(), "do you like music?");
-            AssertEquals("Do you like music?".InvertQuestion(), "you like music");
+            AssertEquals("Do you like music?".InvertQuestion(), "You do like music");
             AssertEquals("Do you like music".InvertQuestion(), "you like music");
+            AssertEquals("Does Mitchel like music?".InvertQuestion(), "Mitchel does like music.");
+            AssertEquals("Do I like music?".InvertQuestion(), "I do like music.");
             AssertEquals("What do you like".InvertQuestion(), "you like");
             AssertEquals("What are you doing".InvertQuestion(), "you are doing");
             AssertEquals("What do you like?".InvertQuestion(), "you like");
@@ -212,6 +213,7 @@ namespace RightBrain
             AssertEquals("Can't you hear".InvertQuestion(), "You can't hear");
             AssertEquals("You can hear".InvertQuestion(), "Can you hear?");
             AssertEquals("You can't hear".InvertQuestion(), "Can't you hear?");
+            AssertEquals("You like music".InvertQuestion(), "do you like music?");
         }
 
         private static void TestSynonyms()
