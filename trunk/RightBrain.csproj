@@ -51,6 +51,7 @@
     <Compile Include="Linguistics\Analysis\Parts\SubjectObjectDetector.cs" />
     <Compile Include="Linguistics\Analysis\Parts\VerbManager.cs" />
     <Compile Include="Linguistics\StringManipulations\Parts\KeepCaseReplacer.cs" />
+    <Compile Include="Linguistics\StringManipulations\Parts\WordInversionManager.cs" />
     <Compile Include="Linguistics\StringManipulations\Parts\WordRemover.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Negation\AintManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\QuestionManager.cs" />

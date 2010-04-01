@@ -105,6 +105,23 @@ namespace Linguistics
         {
             return wordList.GetEnumerator();
         }
+
+        public Word this[int index]
+        {
+            get
+            {
+                return wordList[index];
+            }
+            set
+            {
+                wordList[index] = value;
+            }
+        }
+
+        public Word Last()
+        {
+            return wordList.Last();
+        }
         #endregion
     }
 }

@@ -70,6 +70,44 @@ namespace Linguistics
 
             return newString;
         }
+
+        /// <summary>
+        /// Remove word from string by word position
+        /// </summary>
+        /// <param name="original">original string</param>
+        /// <param name="wordPosition">position of word to remove (starting at 0)</param>
+        /// <param name="isKeepDelimiterAfterNotBefore">true: keep delimiter after removed word, false: keep delimiter before word to remove</param>
+        /// <returns>String with removed word at specified position with specified delimiter kept</returns>
+        internal string RemoveWord(string original, int wordPosition, bool isKeepDelimiterAfterNotBefore)
+        {
+            WordStream wordStream = new WordStream(original);
+
+            string newString = wordStream.FirstDelimiter;
+
+            int wordCounter = 0;
+            foreach (Word word in wordStream)
+            {
+                if (wordCounter == wordPosition && wordCounter != 0)
+                {
+                    if (isKeepDelimiterAfterNotBefore)
+                        newString += word.RightDelimiter;
+                    else
+                        newString += word.LeftDelimiter;
+                }
+                else
+                {
+                    newString += word.ToString();
+                    if (word.RightDelimiter != null)
+                        newString += word.RightDelimiter;
+                }
+
+                wordCounter++;
+            }
+
+            newString = newString.Trim();
+
+            return newString;
+        }
         #endregion
 
         #region Private Methods

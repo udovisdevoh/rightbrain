@@ -18,8 +18,37 @@ namespace Linguistics
         /// <returns>Whether proposition is detected to be a question because it starts with a question word</returns>
         internal bool IsQuestion(string originalProposition)
         {
+            originalProposition = originalProposition.ToLower();
             WordStringStream wordStringStream = new WordStringStream(originalProposition);
             return wordStringStream.First().IsQuestionBeginWord();
+        }
+
+        /// <summary>
+        /// Remove question from proposition
+        /// </summary>
+        /// <param name="proposition">original proposition</param>
+        /// <returns>proposition with question removed</returns>
+        internal string RemoveQuestion(string proposition)
+        {
+            while (proposition.CountWords() > 1 && IsFirstAndSecondWordQuestionBeginWord(proposition))
+                proposition = proposition.RemoveWord(0, false);
+
+            if (proposition.CountWords() > 1 && IsQuestion(proposition))
+                proposition = proposition.InvertWordPosition(0,1);
+            
+            return proposition;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Whether the two first words are question begining words
+        /// </summary>
+        /// <param name="proposition">proposition to analyze</param>
+        /// <returns>Whether the two first words are question begining words</returns>
+        private bool IsFirstAndSecondWordQuestionBeginWord(string proposition)
+        {
+            return IsQuestion(proposition) && IsQuestion(proposition.RemoveWord(0, false));
         }
         #endregion
     }

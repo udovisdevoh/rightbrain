@@ -36,6 +36,11 @@ namespace Linguistics
         /// Manages insertions of words
         /// </summary>
         private static WordInsertionManager wordInsertionManager = new WordInsertionManager();
+
+        /// <summary>
+        /// Manages inversions of words
+        /// </summary>
+        private static WordInversionManager wordInversionManager = new WordInversionManager();
         #endregion
 
         #region Constructors
@@ -131,7 +136,7 @@ namespace Linguistics
         }
 
         /// <summary>
-        /// Remove word from string
+        /// Remove word from string by word name
         /// </summary>
         /// <param name="original">original string</param>
         /// <param name="wordToRemove">word to remove</param>
@@ -140,6 +145,18 @@ namespace Linguistics
         public static string RemoveWord(this string original, string wordToRemove, int occurenceCount)
         {
             return wordRemover.RemoveWord(original, wordToRemove, occurenceCount);
+        }
+
+        /// <summary>
+        /// Remove word from string by word position
+        /// </summary>
+        /// <param name="original">original string</param>
+        /// <param name="wordPosition">position of word to remove (starting at 0)</param>
+        /// <param name="isKeepDelimiterAfterNotBefore">true: keep delimiter after removed word, false: keep delimiter before word to remove</param>
+        /// <returns>String with removed word at specified position with specified delimiter kept</returns>
+        public static string RemoveWord(this string original, int wordPosition, bool isKeepDelimiterAfterNotBefore)
+        {
+            return wordRemover.RemoveWord(original, wordPosition, isKeepDelimiterAfterNotBefore);
         }
 
         /// <summary>
@@ -152,6 +169,18 @@ namespace Linguistics
         public static string InsertWords(this string originalString, string wordsToInsert, int positionIndex)
         {
             return wordInsertionManager.InsertWords(originalString, wordsToInsert, positionIndex);
+        }
+
+        /// <summary>
+        /// Invert word positions in string
+        /// </summary>
+        /// <param name="originalString">original string</param>
+        /// <param name="wordPosition1">word1's position</param>
+        /// <param name="wordPosition2">word2's position</param>
+        /// <returns>String with position of word 1 and word 2 inverted</returns>
+        public static string InvertWordPosition(this string originalString, int wordPosition1, int wordPosition2)
+        {
+            return wordInversionManager.InvertWordPosition(originalString, wordPosition1, wordPosition2);
         }
         #endregion
 

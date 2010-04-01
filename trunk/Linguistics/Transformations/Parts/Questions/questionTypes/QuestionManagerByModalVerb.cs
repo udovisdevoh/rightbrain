@@ -17,8 +17,22 @@ namespace Linguistics
         /// <returns>Whether question was detected becayse proposition begins with modal verb</returns>
         internal bool IsQuestion(string originalProposition)
         {
+            originalProposition = originalProposition.ToLower();
             WordStringStream stream = new WordStringStream(originalProposition);
             return stream.First().IsModalVerb();
+        }
+
+        /// <summary>
+        /// Remove question from proposition
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>proposition with removed question</returns>
+        internal string RemoveQuestion(string proposition)
+        {
+            if (proposition.CountWords() > 1)
+                return proposition.InvertWordPosition(0, 1);
+            else
+                return proposition;
         }
     }
 }

@@ -103,6 +103,16 @@ namespace Linguistics
         {
             return questionManager.IsQuestion(originalProposition);
         }
+
+        /// <summary>
+        /// Convert original proposition to question if it's not and to affirmation or negation if it's a question
+        /// </summary>
+        /// <param name="originalProposition">original proposition</param>
+        /// <returns>Converted original proposition to question if it wasn't and to affirmation or negation if was a question</returns>
+        public static string InvertQuestion(this string originalProposition)
+        {
+            return questionManager.InvertQuestion(originalProposition);
+        }
         #endregion
     }
 }

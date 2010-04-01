@@ -23,6 +23,7 @@ namespace RightBrain
             TestInsensitiveReplaceToLower();
             TestRemoveWord();
             TestInsertWords();
+            TestInvertWords();
         }
 
         private static void TestCountWords()
@@ -37,8 +38,17 @@ namespace RightBrain
             AssertEquals("one two tree".InsertWords("mofo", 2), "one two mofo tree");
         }
 
+        private static void TestInvertWords()
+        {
+            AssertEquals("you are dumb".InvertWordPosition(0, 1), "are you dumb");
+            AssertEquals("you are dumb".InvertWordPosition(1, 0), "are you dumb");
+            AssertEquals("you are dumb".InvertWordPosition(1, 2), "you dumb are");
+            AssertEquals("you are dumb".InvertWordPosition(2, 1), "you dumb are");
+        }
+
         private static void TestRemoveWord()
         {
+            //Remove words by name
             AssertEquals("I do not watch you.".RemoveWord("not"), "I do watch you.");
             AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue"), "I see mountains and dogs");
             AssertEquals("I see blue mountains and blue dogs".RemoveWord("blue", 1), "I see mountains and blue dogs");
@@ -48,6 +58,12 @@ namespace RightBrain
             AssertEquals("I see, blue everywhere".RemoveWord("blue", 0), "I see, everywhere");
             AssertEquals("I see, blue, everywhere".RemoveWord("blue", 0), "I see, everywhere");
             AssertEquals("I see, BLUE, everywhere".RemoveWord("blue", 0), "I see, everywhere");
+
+            //Remove words by position
+            AssertEquals("I see rose everywhere.".RemoveWord(3, true), "I see rose.");
+            AssertEquals("I see rose, everywhere.".RemoveWord(3, false), "I see rose,");
+            AssertEquals("I see rose everywhere.".RemoveWord(0, true), "see rose everywhere.");
+            AssertEquals("I see rose everywhere.".RemoveWord(0, false), "see rose everywhere.");
         }
 
         private static void TestInsensitiveReplaceToLower()
