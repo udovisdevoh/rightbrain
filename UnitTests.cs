@@ -155,7 +155,7 @@ namespace RightBrain
 
         private static void TestInvertQuestion()
         {
-            AssertEquals("You like music?".InvertQuestion(), "you like music");
+            AssertEquals("You like music?".InvertQuestion(), "You like music.");
             AssertEquals("You like music".InvertQuestion(), "do you like music?");
             AssertEquals("Do you like music?".InvertQuestion(), "you like music");
             AssertEquals("Do you like music".InvertQuestion(), "you like music");
