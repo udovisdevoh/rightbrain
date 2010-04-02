@@ -63,7 +63,9 @@ namespace Linguistics
         {
             if (IsQuestion(proposition))
             {
-                if (questionManagerByStartingWithQuestionWord.IsQuestion(proposition))
+                if (proposition.ToLower().StartsWith("which one"))
+                    proposition = proposition.Substring(9).Trim();
+                else if (questionManagerByStartingWithQuestionWord.IsQuestion(proposition))
                     proposition = questionManagerByStartingWithQuestionWord.RemoveQuestion(proposition);
                 else if (questionManagerByModalVerb.IsQuestion(proposition))
                     proposition = questionManagerByModalVerb.RemoveQuestion(proposition);

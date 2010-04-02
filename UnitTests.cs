@@ -209,13 +209,13 @@ namespace RightBrain
             AssertEquals("This is where I go".InvertQuestion(), "is this where I go?");
             AssertEquals("I will tell you when".InvertQuestion(), "will I tell you when?");
             AssertEquals("I will tell you why".InvertQuestion(), "will I tell you why?");
-
-            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
-            AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
             AssertEquals("which one do you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one do you choose".InvertQuestion(), "you choose");
             AssertEquals("which one you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one you choose".InvertQuestion(), "you choose");
+
+            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
+            AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
         }
 
         private static void TestSynonyms()
