@@ -11,6 +11,13 @@ namespace RightBrain
         static void Main(string[] args)
         {
             UnitTests.TestAll();
+
+            while (true)
+            {
+                string input = System.Console.ReadLine();
+                string output = input.InvertFirstSecondPerson().InvertQuestion();
+                System.Console.WriteLine(output);
+            }
         }
     }
 }

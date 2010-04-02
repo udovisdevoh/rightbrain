@@ -371,6 +371,12 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertFirstSecondPerson("you are listening while I tasdfssdlk"), "I am listening while you tasdfssdlk");
             AssertEquals(Transformations.InvertFirstSecondPerson("I am listening while you tasdfssdlk"), "You are listening while I tasdfssdlk");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Are you a weirdo?"), "Am I a weirdo?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Am I a weirdo?"), "Are you a weirdo?");
+
+            AssertEquals(Transformations.InvertFirstSecondPerson("Were you a weirdo?"), "Was I a weirdo?");
+            AssertEquals(Transformations.InvertFirstSecondPerson("Was I a weirdo?"), "Were you a weirdo?");
         }
 
         private static void AssertEquals(string string1, string string2)

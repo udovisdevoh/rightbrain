@@ -53,6 +53,12 @@ namespace Linguistics
                     newWord = newWord.InvertWordKeepCase("was", "were");
                     newWord = newWord.InvertWordKeepCase("aren't", "amn't");
                 }
+                else if (originalWord.NextWord != null && (originalWord.NextWord.ToString().ToLower() == "i" || originalWord.NextWord.ToString().ToLower() == "you" || originalWord.NextWord.ToString().ToLower() == "me"))
+                {
+                    newWord = newWord.InvertWordKeepCase("am", "are");
+                    newWord = newWord.InvertWordKeepCase("was", "were");
+                    newWord = newWord.InvertWordKeepCase("aren't", "amn't");
+                }
 
 
                 if (newWord.ToLower() == "me" || newWord.ToLower() == "i")

@@ -72,6 +72,17 @@ namespace Linguistics
             if (previousWord == "on")
                 return isObject;
 
+            if (previousWord == "are")
+                return isSubject;
+
+            if (previousWord == "were")
+                return isSubject;
+
+            if (previousWord == "am")
+                return isSubject;
+
+            if (previousWord == "was")
+                return isSubject;
 
             bool isNextWordVerb = Analysis.IsVerb(nextWord);
             bool isPreviousWordVerb = Analysis.IsVerb(previousWord);
