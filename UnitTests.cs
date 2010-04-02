@@ -193,14 +193,12 @@ namespace RightBrain
             AssertEquals("Can't you hear".InvertQuestion(), "you can't hear");
             AssertEquals("Is this a retard?".InvertQuestion(), "this is a retard");
             AssertEquals("Is this a retard".InvertQuestion(), "this is a retard");
-
-
-            AssertEquals("You would fuck a dog".InvertQuestion(), "Would you fuck a dog?");
-            AssertEquals("You can hear".InvertQuestion(), "Can you hear?");
-            AssertEquals("You can't hear".InvertQuestion(), "Can't you hear?");
+            AssertEquals("You would fuck a dog".InvertQuestion(), "would you fuck a dog?");
+            AssertEquals("You can hear".InvertQuestion(), "can you hear?");
+            AssertEquals("You can't hear".InvertQuestion(), "can't you hear?");
             AssertEquals("This is ok".InvertQuestion(), "is this ok?");
             AssertEquals("You are ok".InvertQuestion(), "are you ok?");
-            AssertEquals("This is who you are".InvertQuestion(), "Is this who you are?");
+            AssertEquals("This is who you are".InvertQuestion(), "is this who you are?");
 
             AssertEquals("You like music".InvertQuestion(), "do you like music?");
             AssertEquals("which one do you choose?".InvertQuestion(), "you choose");
