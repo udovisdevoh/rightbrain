@@ -214,6 +214,8 @@ namespace RightBrain
             AssertEquals("which one you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one you choose".InvertQuestion(), "you choose");
             AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
+            AssertEquals("Am I a weirdo?".InvertQuestion(), "I am a weirdo");
+            AssertEquals("I am a weirdo".InvertQuestion(), "am I a weirdo?");
             //AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
         }
 
