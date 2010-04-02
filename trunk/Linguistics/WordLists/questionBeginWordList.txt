@@ -15,3 +15,5 @@ isn't
 aren't
 won't
 shan't
+am
+were
