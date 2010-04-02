@@ -54,6 +54,7 @@
     <Compile Include="Linguistics\StringManipulations\Parts\WordInversionManager.cs" />
     <Compile Include="Linguistics\StringManipulations\Parts\WordRemover.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Negation\AintManager.cs" />
+    <Compile Include="Linguistics\Transformations\Parts\Questions\questionAdder\QuestionAdder.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\QuestionManager.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByEndingWord.cs" />
     <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByMarkOnly.cs" />

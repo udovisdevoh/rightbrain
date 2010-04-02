@@ -30,6 +30,8 @@ namespace Linguistics
         /// Manages questions that are questions because they begin with modal verbs
         /// </summary>
         private QuestionManagerByModalVerb questionManagerByModalVerb = new QuestionManagerByModalVerb();
+
+        private QuestionAdder questionAdder = new QuestionAdder();
         #endregion
 
         #region Internal Methods
@@ -74,25 +76,10 @@ namespace Linguistics
             }
             else
             {
-                proposition = AddQuestion(proposition);
+                proposition = questionAdder.AddQuestion(proposition);
             }
 
             return proposition;
-        }
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Convert proposition to question
-        /// </summary>
-        /// <param name="proposition">proposition</param>
-        /// <returns>proposition as question</returns>
-        private string AddQuestion(string proposition)
-        {
-            WordStream wordStream = new WordStream(proposition);
-            Word lastWord = wordStream.Last();
-            lastWord.RightDelimiter = "?";
-            return wordStream.ToString();
         }
         #endregion
     }
