@@ -171,7 +171,7 @@ namespace RightBrain
             AssertEquals("say what".InvertQuestion(), "say");
             AssertEquals("How are you doing?".InvertQuestion(), "you are doing");
             AssertEquals("How are you doing".InvertQuestion(), "you are doing");
-            AssertEquals("How do you do?".InvertQuestion(), "you");
+            AssertEquals("How do you do?".InvertQuestion(), "you do");
             AssertEquals("Are you a retard?".InvertQuestion(), "you are a retard");
             AssertEquals("Are you a retard".InvertQuestion(), "you are a retard");
             AssertEquals("Is it ok?".InvertQuestion(), "it is ok");
@@ -213,9 +213,8 @@ namespace RightBrain
             AssertEquals("which one do you choose".InvertQuestion(), "you choose");
             AssertEquals("which one you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one you choose".InvertQuestion(), "you choose");
-
-            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
             AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
+            //AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
         }
 
         private static void TestSynonyms()
