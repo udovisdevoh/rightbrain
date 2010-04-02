@@ -68,6 +68,8 @@ namespace Linguistics
                 else if (questionManagerByEndingWord.IsQuestion(proposition))
                     proposition = questionManagerByEndingWord.RemoveQuestion(proposition);
 
+                proposition = proposition.RemoveWord("do");
+
                 proposition = questionManagerByMarkOnly.RemoveQuestion(proposition);
             }
             else
