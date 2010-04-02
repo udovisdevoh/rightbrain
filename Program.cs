@@ -12,6 +12,7 @@ namespace RightBrain
         {
             UnitTests.TestAll();
 
+            #warning "Who are you" outputs "Me am"
             while (true)
             {
                 string input = System.Console.ReadLine();
