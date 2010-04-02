@@ -18,20 +18,17 @@ namespace Linguistics
         /// <returns>proposition as question</returns>
         internal string AddQuestion(string proposition)
         {
-            WordStream wordStream = new WordStream(proposition);
-
-            //Invert first word with second if second word is a question word or a modal verb
-            if (wordStream.CountWords() > 1 && wordStream[1].StringValue.ToLower().IsQuestionBeginWord() || wordStream[1].StringValue.ToLower().IsModalVerb())
+            if (IsSecondWordModalVerbOrQuestionBeginWord(proposition))
             {
-                Word firstWord = wordStream[0];
-
-                if (firstWord.StringValue.IsPronoun() && firstWord.StringValue.ToLower() != "i")
-                {
-                    firstWord.StringValue = firstWord.StringValue.ToLower();
-                    proposition = wordStream.ToString();
-                }
-
-                proposition = proposition.InvertWordPosition(0, 1);
+                proposition = InvertFirstAndSecondWord(proposition);
+            }
+            else if (IsFirstWordYouOrI(proposition))
+            {
+                proposition = AddDoBefore(proposition);
+            }
+            else
+            {
+                proposition = AddDoYouThinkBefore(proposition);
             }
 
             proposition = AddQuestionMark(proposition);
@@ -42,6 +39,84 @@ namespace Linguistics
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Add word "do" before proposition
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>proposition with "do" before</returns>
+        private string AddDoBefore(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+
+            if (wordStream.CountWords() > 0 && wordStream[0].StringValue.IsPronoun() && wordStream[0].StringValue.ToLower() != "i")
+            {
+                wordStream[0].StringValue = wordStream[0].StringValue.ToLower();
+            }
+
+            proposition = wordStream.ToString();
+            proposition = proposition.InsertWords("Do", 0);
+            return proposition;
+        }
+
+        /// <summary>
+        /// Add "do you think" before proposition
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>proposition with "do you think" before</returns>
+        private string AddDoYouThinkBefore(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+
+            if (wordStream.CountWords() > 0 && wordStream[0].StringValue.IsPronoun() && wordStream[0].StringValue.ToLower() != "i")
+            {
+                wordStream[0].StringValue = wordStream[0].StringValue.ToLower();
+            }
+
+            proposition = wordStream.ToString();
+            proposition = proposition.InsertWords("Do you think", 0);
+            return proposition;
+        }
+
+        /// <summary>
+        /// Invert first and second word (which is a modal verb or a question word)
+        /// </summary>
+        /// <param name="proposition">source proposition</param>
+        /// <returns>proposition with inverted 1st and 2nd word</returns>
+        private string InvertFirstAndSecondWord(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+            Word firstWord = wordStream[0];
+            if (firstWord.StringValue.IsPronoun() && firstWord.StringValue.ToLower() != "i")
+            {
+                firstWord.StringValue = firstWord.StringValue.ToLower();
+                proposition = wordStream.ToString();
+            }
+            proposition = proposition.InvertWordPosition(0, 1);
+            return proposition;
+        }
+
+        /// <summary>
+        /// true: second word is modal verb or question begin word, else: false
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>true: second word is modal verb or question begin word, else: false</returns>
+        private bool IsSecondWordModalVerbOrQuestionBeginWord(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+            return wordStream.CountWords() > 1 && wordStream[1].StringValue.ToLower().IsQuestionBeginWord() || wordStream[1].StringValue.ToLower().IsModalVerb();
+        }
+
+        /// <summary>
+        /// Whether first word in proposition is "you" or "I"
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>Whether first word in proposition is "you" or "I"</returns>
+        private bool IsFirstWordYouOrI(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+            return wordStream.CountWords() > 0 && wordStream[0].StringValue.ToLower() == "i" || wordStream[0].StringValue.ToLower()=="you";
+        }
+
         /// <summary>
         /// Add question mark to proposition
         /// </summary>
