@@ -38,7 +38,6 @@ namespace Linguistics
                 WordStream wordStream = new WordStream(proposition);
                 wordStream[0].StringValue = wordStream[0].StringValue.ToLower();
                 proposition = wordStream.ToString();
-
                 proposition = proposition.InvertWordPosition(0, 1);
             }
             
