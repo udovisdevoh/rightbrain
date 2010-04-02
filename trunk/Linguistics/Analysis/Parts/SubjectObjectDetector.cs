@@ -84,6 +84,9 @@ namespace Linguistics
             if (previousWord == "was")
                 return isSubject;
 
+            if (previousWord.IsModalVerb())
+                return isSubject;
+
             bool isNextWordVerb = Analysis.IsVerb(nextWord);
             bool isPreviousWordVerb = Analysis.IsVerb(previousWord);
 
