@@ -63,7 +63,9 @@ namespace Linguistics
         {
             if (IsQuestion(proposition))
             {
-                if (proposition.ToLower().StartsWith("which one"))
+                proposition = proposition.Trim();
+
+                if (proposition.ToLower().StartsWith("which one "))
                     proposition = proposition.Substring(9).Trim();
                 else if (questionManagerByStartingWithQuestionWord.IsQuestion(proposition))
                     proposition = questionManagerByStartingWithQuestionWord.RemoveQuestion(proposition);
@@ -72,7 +74,10 @@ namespace Linguistics
                 else if (questionManagerByEndingWord.IsQuestion(proposition))
                     proposition = questionManagerByEndingWord.RemoveQuestion(proposition);
 
-                proposition = proposition.RemoveWord("do");
+                if (IsSecondWordDo(proposition))
+                    proposition = proposition.RemoveWord(1, false);
+                else if (IsFirstWordDo(proposition))
+                    proposition = proposition.RemoveWord(0, false);
 
                 proposition = questionManagerByMarkOnly.RemoveQuestion(proposition);
             }
@@ -82,6 +87,30 @@ namespace Linguistics
             }
 
             return proposition;
+        }
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Whether 1st word is "do"
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>Whether 1st word is "do"</returns>
+        private bool IsFirstWordDo(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+            return wordStream.CountWords() > 0 && wordStream[0].ToString().ToLower() == "do";
+        }
+
+        /// <summary>
+        /// Whether 2nd word is "do"
+        /// </summary>
+        /// <param name="proposition">proposition</param>
+        /// <returns>Whether 2nd word is "do"</returns>
+        private bool IsSecondWordDo(string proposition)
+        {
+            WordStream wordStream = new WordStream(proposition);
+            return wordStream.CountWords() > 1 && wordStream[1].ToString().ToLower() == "do";
         }
         #endregion
     }
