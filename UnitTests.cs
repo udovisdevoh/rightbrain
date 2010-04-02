@@ -221,6 +221,8 @@ namespace RightBrain
             AssertEquals("didn't I listen to you".InvertQuestion(), "I didn't listen to you");
             AssertEquals("I didn't listen to you".InvertQuestion(), "didn't I listen to you?");
             
+            #warning Engine must be improved according to these unit tests
+            //AssertEquals("Last night I did".InvertQuestion(), "Last night I did what?");
             //AssertEquals("What did I do last night?".InvertQuestion(), "Last night I did");
             //AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
         }
