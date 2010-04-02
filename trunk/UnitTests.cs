@@ -216,6 +216,13 @@ namespace RightBrain
             AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
             AssertEquals("Am I a weirdo?".InvertQuestion(), "I am a weirdo");
             AssertEquals("I am a weirdo".InvertQuestion(), "am I a weirdo?");
+            AssertEquals("did I listen to you".InvertQuestion(), "I did listen to you");
+            AssertEquals("I did listen to you".InvertQuestion(), "did I listen to you?");
+            AssertEquals("didn't I listen to you".InvertQuestion(), "I didn't listen to you");
+            AssertEquals("I didn't listen to you".InvertQuestion(), "didn't I listen to you?");
+            //AssertEquals("What did I do last night?".InvertQuestion(), "I did last night");
+
+
             //AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
         }
 
@@ -262,6 +269,9 @@ namespace RightBrain
 
             AssertEquals(Transformations.InvertNegation("This is not hot"), "This is hot");
             AssertEquals(Transformations.InvertNegation("This is hot"), "This is not hot");
+
+            AssertEquals(Transformations.InvertNegation("I didn't listen"), "I did listen");
+            AssertEquals(Transformations.InvertNegation("I did listen"), "I didn't listen");
         }
 
         private static void TestInvertFirstSecondPerson()

@@ -17,3 +17,5 @@ won't
 shan't
 am
 were
+did
+didn't
