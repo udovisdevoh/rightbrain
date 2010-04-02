@@ -204,18 +204,18 @@ namespace RightBrain
             AssertEquals("I'm the one which is the best".InvertQuestion(), "Do you think I'm the one which is the best?");
             AssertEquals("I'm the one who is the best".InvertQuestion(), "Do you think I'm the one who is the best?");
             AssertEquals("This is how we do it".InvertQuestion(), "is this how we do it?");
-            AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
-
             AssertEquals("This is a retard".InvertQuestion(), "is this a retard?");
-            AssertEquals("This is a retard?".InvertQuestion(), "is this a retard?");
-            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
-            AssertEquals("This is where I go".InvertQuestion(), "Where do I go?");
-            AssertEquals("I will tell you when".InvertQuestion(), "When will I tell you?");
-            AssertEquals("I will tell you why".InvertQuestion(), "Why will I tell you?");
+            AssertEquals("This is a retard?".InvertQuestion(), "This is a retard");
+            AssertEquals("This is where I go".InvertQuestion(), "is this where I go?");
+            AssertEquals("I will tell you when".InvertQuestion(), "will I tell you when?");
+            AssertEquals("I will tell you why".InvertQuestion(), "will I tell you why?");
+
             AssertEquals("which one do you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one do you choose".InvertQuestion(), "you choose");
             AssertEquals("which one you choose?".InvertQuestion(), "you choose");
             AssertEquals("which one you choose".InvertQuestion(), "you choose");
+            AssertEquals("Is this how we do it?".InvertQuestion(), "this is how we do it");
+            AssertEquals("Whose planet is it?".InvertQuestion(), "This planet belongs to");
         }
 
         private static void TestSynonyms()
