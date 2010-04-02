@@ -34,7 +34,13 @@ namespace Linguistics
                 proposition = proposition.RemoveWord(0, false);
 
             if (proposition.CountWords() > 1 && IsQuestion(proposition))
-                proposition = proposition.InvertWordPosition(0,1);
+            {
+                WordStream wordStream = new WordStream(proposition);
+                wordStream[0].StringValue = wordStream[0].StringValue.ToLower();
+                proposition = wordStream.ToString();
+
+                proposition = proposition.InvertWordPosition(0, 1);
+            }
             
             return proposition;
         }

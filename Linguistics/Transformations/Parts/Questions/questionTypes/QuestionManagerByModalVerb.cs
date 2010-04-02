@@ -29,6 +29,10 @@ namespace Linguistics
         /// <returns>proposition with removed question</returns>
         internal string RemoveQuestion(string proposition)
         {
+            WordStream wordStream = new WordStream(proposition);
+            wordStream[0].StringValue = wordStream[0].StringValue.ToLower();
+            proposition = wordStream.ToString();
+
             if (proposition.CountWords() > 1)
                 return proposition.InvertWordPosition(0, 1);
             else

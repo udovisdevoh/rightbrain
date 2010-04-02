@@ -155,18 +155,18 @@ namespace RightBrain
 
         private static void TestInvertQuestion()
         {
-            AssertEquals("You like music?".InvertQuestion(), "You like music.");
-            AssertEquals("Do you like music?".InvertQuestion(), "You do like music");
+            AssertEquals("You like music?".InvertQuestion(), "You like music");
+            AssertEquals("Do you like music?".InvertQuestion(), "you like music");
             AssertEquals("Do you like music".InvertQuestion(), "you like music");
-            AssertEquals("Does Mitchel like music?".InvertQuestion(), "Mitchel does like music.");
-            AssertEquals("Do I like music?".InvertQuestion(), "I do like music.");
+            AssertEquals("Does Mitchel like music?".InvertQuestion(), "Mitchel does like music");
+            AssertEquals("Do I like music?".InvertQuestion(), "I like music");
             AssertEquals("What do you like".InvertQuestion(), "you like");
             AssertEquals("What are you doing".InvertQuestion(), "you are doing");
             AssertEquals("What do you like?".InvertQuestion(), "you like");
             AssertEquals("What are you doing?".InvertQuestion(), "you are doing");
             AssertEquals("When are you going".InvertQuestion(), "you are going");
-            AssertEquals("You like what?".InvertQuestion(), "you like");
-            AssertEquals("You like what".InvertQuestion(), "you like");
+            AssertEquals("You like what?".InvertQuestion(), "You like");
+            AssertEquals("You like what".InvertQuestion(), "You like");
             AssertEquals("say what?".InvertQuestion(), "say");
             AssertEquals("say what".InvertQuestion(), "say");
             AssertEquals("which one do you choose?".InvertQuestion(), "you choose");

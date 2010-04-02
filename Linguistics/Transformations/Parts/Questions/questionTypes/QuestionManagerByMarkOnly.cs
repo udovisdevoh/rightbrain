@@ -29,7 +29,11 @@ namespace Linguistics
         /// <returns>proposition with question mark removed</returns>
         internal string RemoveQuestion(string originalProposition)
         {
-            return originalProposition.Replace('?', '.');
+            WordStream wordStream = new WordStream(originalProposition);
+            Word lastWord = wordStream.Last();
+            if (lastWord.RightDelimiter != null && lastWord.RightDelimiter.Contains('?'))
+                lastWord.RightDelimiter = "";
+            return wordStream.ToString();
         }
         #endregion
     }
