@@ -15,8 +15,13 @@ namespace RightBrain
             while (true)
             {
                 string input = System.Console.ReadLine();
-                string output = input.InvertFirstSecondPerson().InvertQuestion();
+                string output = input.InvertFirstSecondPerson();
+
+                if (output.IsQuestion())
+                    output = output.InvertQuestion();
+
                 System.Console.WriteLine(output);
+                System.Console.WriteLine(output.InvertNegation());
             }
         }
     }
