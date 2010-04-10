@@ -20,6 +20,9 @@ namespace RightBrain
                 if (output.IsQuestion() || output.IsImperative())
                     output = output.InvertQuestion();
 
+                if (output.Trim().ToLowerInvariant().StartsWith("because"))
+                    output = output.RemoveWord(0, true);
+
                 System.Console.WriteLine(output);
                 System.Console.WriteLine(output.InvertNegation());
             }
