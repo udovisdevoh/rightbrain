@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="artificialart, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\artificialart.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -47,91 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Linguistics\Analysis\Analysis.cs" />
-    <Compile Include="Linguistics\Analysis\Parts\SubjectObjectDetector.cs" />
-    <Compile Include="Linguistics\Analysis\Parts\VerbManager.cs" />
-    <Compile Include="Linguistics\StringManipulations\Parts\KeepCaseReplacer.cs" />
-    <Compile Include="Linguistics\StringManipulations\Parts\WordInversionManager.cs" />
-    <Compile Include="Linguistics\StringManipulations\Parts\WordRemover.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Negation\AintManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\questionAdder\QuestionAdder.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\QuestionManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByEndingWord.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByMarkOnly.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByModalVerb.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Questions\questionTypes\QuestionManagerByStartingWithQuestionWord.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Synonyms\SynonymManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\FirstSecondPersonManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Negation\NegationManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Negation\NotManager.cs" />
-    <Compile Include="Linguistics\Transformations\Parts\Negation\NtManager.cs" />
-    <Compile Include="Linguistics\StringManipulations\Parts\WordInsertionManager.cs" />
-    <Compile Include="Linguistics\Transformations\Transformations.cs" />
-    <Compile Include="Linguistics\WordList.cs" />
-    <Compile Include="Linguistics\WordStream\Word.cs" />
-    <Compile Include="Linguistics\WordStream\WordStream.cs" />
-    <Compile Include="Linguistics\WordStream\WordStringStream.cs" />
-    <Compile Include="Matrix\Matrix.cs" />
-    <Compile Include="Matrix\XmlMatrixSaverLoader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Linguistics\StringManipulations\StringManipulations.cs" />
-    <Compile Include="UnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\irregularVerbList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Linguistics\WordLists\modalVerbList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Linguistics\WordLists\regularVerbList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\undefinedVerbList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\pronounList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\postpositionList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Linguistics\WordLists\prepositionList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\questionBeginWordList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\subordinatingConjunctionBeforeSubjectList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Matrix\xmlMatrixFiles\antonymList.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Matrix\xmlMatrixFiles\synonymList.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\wordToPutNotAfterList.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Linguistics\WordLists\questionEndingWordList.txt">
+    <EmbeddedResource Include="artificialart.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
