@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Linguistics;
+using Linguistics.English;
 
 namespace RightBrain
 {
@@ -10,8 +11,6 @@ namespace RightBrain
     {
         static void Main(string[] args)
         {
-            UnitTests.TestAll();
-
             #warning "Who are you" outputs "Me am"
             while (true)
             {
