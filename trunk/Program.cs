@@ -17,7 +17,7 @@ namespace RightBrain
                 string input = System.Console.ReadLine();
                 string output = input.InvertFirstSecondPerson();
 
-                if (output.IsQuestion())
+                if (output.IsQuestion() || output.IsImperative())
                     output = output.InvertQuestion();
 
                 System.Console.WriteLine(output);
