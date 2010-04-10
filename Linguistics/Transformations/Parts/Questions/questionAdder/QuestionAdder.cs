@@ -103,7 +103,7 @@ namespace Linguistics
         private bool IsSecondWordModalVerbOrQuestionBeginWord(string proposition)
         {
             WordStream wordStream = new WordStream(proposition);
-            return wordStream.CountWords() > 1 && wordStream[1].StringValue.ToLower().IsQuestionBeginWord() || wordStream[1].StringValue.ToLower().IsModalVerb();
+            return wordStream.CountWords() > 1 && wordStream.CountWords() > 0 && (wordStream[1].StringValue.ToLower().IsQuestionBeginWord() || wordStream[1].StringValue.ToLower().IsModalVerb());
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Linguistics
         private bool IsFirstWordYouOrI(string proposition)
         {
             WordStream wordStream = new WordStream(proposition);
-            return wordStream.CountWords() > 0 && wordStream[0].StringValue.ToLower() == "i" || wordStream[0].StringValue.ToLower()=="you";
+            return wordStream.CountWords() > 0 && wordStream[0].StringValue.ToLower() == "i" || wordStream[0].StringValue.ToLower() == "you";
         }
 
         /// <summary>
