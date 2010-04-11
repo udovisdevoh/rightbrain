@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Linguistics;
 using Linguistics.English;
+using WebServices;
 
 namespace RightBrain
 {
@@ -11,6 +12,10 @@ namespace RightBrain
     {
         static void Main(string[] args)
         {
+            GoogleChatBot googleChatBot = new GoogleChatBot();
+
+            Random random = new Random();
+
             #warning "Who are you" outputs "Me am"
             while (true)
             {
@@ -23,8 +28,13 @@ namespace RightBrain
                 if (output.Trim().ToLowerInvariant().StartsWith("because"))
                     output = output.RemoveWord(0, true);
 
+                /*string invertedOutput = output.InvertNegation();
+                if (!invertedOutput.StartsWith("It's not like"))
+                    output = invertedOutput;*/
+
+                output = googleChatBot.TryExpandString(output, random);
+
                 System.Console.WriteLine(output);
-                System.Console.WriteLine(output.InvertNegation());
             }
         }
     }
